@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,14 +30,38 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 
-	<% if(false) {%>
-		<jsp:include page="home.jsp"></jsp:include>
-	<% } else {%>
-		<jsp:include page="shop.jsp"></jsp:include>
-	<% } %>
-	
+	<div class="banner">
+	<img src="	https://preview.colorlib.com/theme/karma/img/banner/banner-bg.jpg" class="banner-bg" alt="img">
+	<img
+		class="banner-shoe" alt="banner"
+		src="https://preview.colorlib.com/theme/karma/img/banner/banner-img.png">
+	</div>
 
-	
+	<h1>User List</h1>
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">id</th>
+				<th scope="col">username</th>
+				<th scope="col">email</th>
+				<th scope="col">Handle</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${userList}" var="user">
+				<tr>
+					<th scope="row">1</th>
+					<td><c:out value="${user.idUser}" /></td>
+					<td><c:out value="${user.username}" /></td>
+					<td><c:out value="${user.email}" /></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+
 
 	<jsp:include page="footer.jsp"></jsp:include>
 

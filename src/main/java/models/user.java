@@ -4,11 +4,11 @@ import java.sql.Date;
 
 public class user {
 	private String idUser, username, password, email, phone, address, gender, avatarUrl;
-	private boolean isAdmin;
+	private int isAdmin;
 	private Date createAtDate;
 
 	public user(String idUser, String username, String password, String email, String phone, String address,
-			String gender, String avatarUrl, boolean isAdmin, Date createAtDate) {
+			String gender, String avatarUrl, int isAdmin, Date createAtDate) {
 		super();
 		this.idUser = idUser;
 		this.username = username;
@@ -86,11 +86,11 @@ public class user {
 		this.avatarUrl = avatarUrl;
 	}
 
-	public boolean isAdmin() {
+	public int getIsAdmin() {
 		return isAdmin;
 	}
 
-	public void setAdmin(boolean isAdmin) {
+	public void setIsAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 
@@ -108,5 +108,7 @@ public class user {
 				+ ", phone=" + phone + ", address=" + address + ", gender=" + gender + ", avatarUrl=" + avatarUrl
 				+ ", isAdmin=" + isAdmin + ", createAtDate=" + createAtDate + "]";
 	}
+
+	
 
 }
