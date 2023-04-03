@@ -13,6 +13,7 @@ import java.util.List;
 
 import database.userDao;
 
+
 public class userController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public userController() {
@@ -27,7 +28,7 @@ public class userController extends HttpServlet {
 		List<user> rs = usDao.selectAll();
 //		System.out.println(rs);
 		
-		user fUser1 = new user("5", "Zin2", "zin123f", "zi1n@gmail.com", null, null, null, null, 0, null);
+//		user fUser1 = new user("5", "Zin2", "zin123f", "zi1n@gmail.com", null, null, null, null, 0, null);
 //		usDao.delete(fUser1);
 //		usDao.insert(fUser1);
 		

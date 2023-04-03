@@ -20,8 +20,8 @@ addCount();
 		</button>
 	</div>
 	<ul class="header-menu-list">
-		<li class="header-menu"><a href="#">Home</a></li>
-		<li class="header-menu"><a href="#">Shop</a></li>
+		<li class="header-menu"><a href="/KarmaShop/userController">Home</a></li>
+		<li class="header-menu"><a href="/KarmaShop/productController">Shop</a></li>
 		<li class="header-menu"><a href="#">Blog</a></li>
 		<li class="header-menu"><a href="#">Contact</a></li>
 		<li class="header-menu"><a href="#">Admin</a></li>

@@ -6,34 +6,30 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.product;
-
+import models.orderDetails;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
+import database.orderDetailsDao;
 
-import database.productDao;
 
-
-public class productController extends HttpServlet {
+public class orderDetailsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public productController() {
+	public orderDetailsController() {
 		super();
 	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
 
-		productDao prdDao = new productDao();
-		ArrayList<product> dataProduct = prdDao.selectAll();
-		for (product product : dataProduct) {
-			System.out.println("product: " + product.toString());
-		}
-//
-		request.setAttribute("dataProduct", dataProduct);
+		orderDetailsDao odDetailDao = new orderDetailsDao();
+		List<orderDetails> rs = odDetailDao.selectAll();
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/views/shop.jsp");
+
+		RequestDispatcher rd = request.getRequestDispatcher("views/index.jsp");
+		request.setAttribute("rs", rs);
 		rd.forward(request, response);
+		
 	}
 
 }
