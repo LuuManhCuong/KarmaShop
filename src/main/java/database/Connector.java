@@ -11,9 +11,9 @@ public class Connector {
 		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://127.0.0.1:3306/karmar_shop?useSSL=false&allowPublicKeyRetrieval=true";
+			String url = "jdbc:mysql://127.0.0.1:3306/fashionnew?useSSL=false&allowPublicKeyRetrieval=true";
 			String username = "root";
-			String password = "";
+			String password = "thuan2002";
 			conn = DriverManager.getConnection(url, username, password);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

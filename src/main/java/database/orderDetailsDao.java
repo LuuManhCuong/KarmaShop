@@ -121,14 +121,14 @@ public class orderDetailsDao implements DaoInterface<orderDetails> {
 						+ "(`idorderDetails`, `status`, `paymentBy`, `statusPayment`, `paid`, `owed`, `orderDetailsDate`, `shipDate`) "
 						+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);\r\n";
 				PreparedStatement st = connect.prepareStatement(sql);
-				st.setString(1, t.getIdorderDetails());
-				st.setString(2, t.getStatus());
-				st.setString(3, t.getPaymentBy());
-				st.setString(4, t.getStatusPayment());
-				st.setDouble(5, t.getPaid());
-				st.setDouble(6, t.getOwed());
-				st.setDate(7, t.getorderDetailsDate());
-				st.setDate(8, t.getShipDate());
+				st.setString(1, t.getIdOrderDetails());
+//				st.setString(2, t.getStatus());
+//				st.setString(3, t.getPaymentBy());
+//				st.setString(4, t.getStatusPayment());
+//				st.setDouble(5, t.getPaid());
+//				st.setDouble(6, t.getOwed());
+//				st.setDate(7, t.getorderDetailsDate());
+//				st.setDate(8, t.getShipDate());
 //				3) chạy câu lệnh sql
 				count = st.executeUpdate();
 
@@ -169,7 +169,7 @@ public class orderDetailsDao implements DaoInterface<orderDetails> {
 //				2) tạo stament
 				String sql = "DELETE FROM `karmar_shop`.`orderDetails` WHERE (`idorderDetails` = ?);\r\n";
 				PreparedStatement st = connect.prepareStatement(sql);
-				st.setString(1, t.getIdorderDetails());
+				st.setString(1, t.getIdOrderDetails());
 
 //				3) chạy câu lệnh sql
 				System.out.println(sql);
