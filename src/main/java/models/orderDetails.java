@@ -1,6 +1,10 @@
 package models;
 
 public class orderDetails {
+	public orderDetails() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	private String idOrderDetails;
 	private order order;
 	private product product;

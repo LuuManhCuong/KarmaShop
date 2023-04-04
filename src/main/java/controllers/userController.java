@@ -3,6 +3,8 @@ package controllers;
 import jakarta.servlet.RequestDispatcher;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -24,6 +26,7 @@ public class userController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
+		
 		userDao usDao = new userDao();
 		List<user> rs = usDao.selectAll();
 //		System.out.println(rs);
@@ -32,21 +35,10 @@ public class userController extends HttpServlet {
 //		usDao.delete(fUser1);
 //		usDao.insert(fUser1);
 		
-
 		RequestDispatcher rd = request.getRequestDispatcher("views/index.jsp");
+		
 		request.setAttribute("userList", rs);
 		rd.forward(request, response);
-
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 	}
 

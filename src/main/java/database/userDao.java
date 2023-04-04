@@ -215,6 +215,7 @@ public class userDao implements DaoInterface<user> {
 		}
 		
 		user fUser1 = new user("1", "Zin2", "zin123f", "zi1n@gmail.com", null, null, null, null, 0, null);
+		
 		user findUser = usDao.selectById(fUser1);
 		
 		System.out.println("xin chào " + findUser.getUsername());

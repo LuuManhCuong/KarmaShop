@@ -1,6 +1,11 @@
 package models;
 
 public class product {
+	public product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	private String idProduct, name, description, category, brand, size, thumbnail, color;
 	private int quantity, like;
 

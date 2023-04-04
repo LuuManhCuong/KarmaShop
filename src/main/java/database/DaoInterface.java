@@ -17,5 +17,4 @@ public interface DaoInterface<T> {
 
 	public int update(T t);
 
-
 }
