@@ -49,4 +49,14 @@
     <servlet-name>gfds</servlet-name>
     <url-pattern>/gfds</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>shop</display-name>
+    <servlet-name>shop</servlet-name>
+    <servlet-class>controllers.shop</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>shop</servlet-name>
+    <url-pattern>/shop</url-pattern>
+  </servlet-mapping>
 </web-app>

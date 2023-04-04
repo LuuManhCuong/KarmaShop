@@ -1,8 +1,8 @@
 package controllers;
 
 import jakarta.servlet.RequestDispatcher;
-
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,17 +13,19 @@ import java.util.ArrayList;
 
 import database.productDao;
 
-
-public class productController extends HttpServlet {
+/**
+ * Servlet implementation class shop
+ */
+public class shop extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    
+    public shop() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public productController() {
-		super();
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		productDao prdDao = new productDao();
 		ArrayList<product> dataProduct = prdDao.selectAll();
 		for (product product : dataProduct) {

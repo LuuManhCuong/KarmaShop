@@ -1,5 +1,7 @@
 @charset "ISO-8859-1";
 
+#e7ab3c
+
 body {
 	line-height: 24px;
 	font-size: 14px;
@@ -121,11 +123,52 @@ img {
 
 .shop {
 	margin: 180px 100px 0;
+}
+
+.side-bar {
+	position: fixed;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	min-height: 70%;
+}
+
+.block-product {
+	margin-left: 28%;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
-.card{
+
+.card {
 	margin: 10px 0;
+	position: relative;
 }
-.card img{
+
+.card img {
 	margin: 0;
+}
+
+.label {
+	position: absolute;
+	top: 10%;
+	left: 0;
+}
+
+.label p {
+	min-width: 60px;
+	font-size: 14px;
+	color: white;
+	background-color: #e7ab3c;
+	margin: 5px 0;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	font-size: 14px;
+}
+
+.like {
+	font-size: 2rem;
+	background: transparent;
+	position: absolute;
+	top: 5%;
+	right: 5%;
+	border: none;
+	width: 50px;
+	color: #e7ab3c;
 }

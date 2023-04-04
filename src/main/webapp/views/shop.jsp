@@ -34,7 +34,7 @@
 
 	<div class="shop text-center">
 		<div class="row">
-			<div class="col col-lg-3">
+			<div class="col col-lg-3 side-bar">
 
 				<h3>Category</h3>
 				<ul class="category">
@@ -52,17 +52,17 @@
 					<li>Puma</li>
 				</ul>
 
-				<h3>Color</h3>
+				<h3>Size</h3>
 				<ul class="category">
 
-					<li>Red</li>
-					<li>Black</li>
-					<li>White</li>
+					<li>S</li>
+					<li>M</li>
+					<li>L</li>
 				</ul>
 			</div>
 
 
-			<div class="col col-lg-9">
+			<div class="col col-lg-9 block-product">
 				<div class="container text-center">
 					<div class="row">
 
@@ -71,14 +71,25 @@
 
 							<div class="col">
 								<div class="card" style="width: 18rem;">
-									<img
-										src="${product.thumbnail}"
-										class="card-img-top"
-										alt="img">
+									<div class="label">
+										<p>${product.category}</p>
+										<p>${product.brand}</p>
+										<p>${product.size}</p>
+									</div>
+									<button class="like">
+										<i class="fa-regular fa-heart"></i>
+										<%--<i class="fa-solid fa-heart"></i> --%>
+									</button>
+									<img src="${product.thumbnail}" class="card-img-top" alt="img">
 									<div class="card-body">
 										<h5 class="card-title">${product.name}</h5>
 										<p class="card-text">${product.description}</p>
-										<a href="#" class="btn btn-primary">Go somewhere</a>
+										
+										
+									<div class="buy-btn">
+									<a href="#" class="btn btn-primary">Buy Now</a>
+									<a href="#" class="btn btn-primary">Add To Cart</a>
+									</div>
 									</div>
 								</div>
 							</div>
