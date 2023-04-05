@@ -31,7 +31,6 @@ public class shop extends HttpServlet {
 		for (product product : dataProduct) {
 			System.out.println("product: " + product.toString());
 		}
-//
 		request.setAttribute("dataProduct", dataProduct);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/views/shop.jsp");

@@ -37,12 +37,19 @@
 			<div class="col col-lg-3 side-bar">
 
 				<h3>Category</h3>
-				<ul class="category">
+				<div class="category">
+					<label> <input type="radio" onchange="myFunction()" name="gender" value="male">
+						Male
+					</label>
 
-					<li>Men</li>
-					<li>Women</li>
-					<li>Kids</li>
-				</ul>
+					<label> <input type="radio" onchange="myFunction()" name="gender" value="female">
+						Female
+					</label>
+
+					<label> <input type="radio" onchange="myFunction()" name="gender" value="other">
+						Other
+					</label>
+				</div>
 
 				<h3>Brand</h3>
 				<ul class="category">
@@ -84,12 +91,12 @@
 									<div class="card-body">
 										<h5 class="card-title">${product.name}</h5>
 										<p class="card-text">${product.description}</p>
-										
-										
-									<div class="buy-btn">
-									<a href="#" class="btn btn-primary">Buy Now</a>
-									<a href="#" class="btn btn-primary">Add To Cart</a>
-									</div>
+
+
+										<div class="buy-btn">
+											<a href="#" class="btn btn-primary">Buy Now</a> <a href="#"
+												class="btn btn-primary">Add To Cart</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -97,7 +104,19 @@
 						</c:forEach>
 
 
-
+						<nav class="paginate" aria-label="Page navigation example">
+							<ul class="pagination">
+								<li class="page-item"><a class="page-link" href="#"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								</a></li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item"><a class="page-link" href="#"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>
@@ -109,17 +128,6 @@
 	<jsp:include page="footer.jsp"></jsp:include>
 
 
-
-	<button onclick="myFunction()">Click me</button>
-
-	<p id="demo"></p>
-
-	<script>
-		function myFunction() {
-			document.getElementById("demo").innerHTML = "Hello World";
-			console.log("clicik")
-		}
-	</script>
 
 	<script type="text/javascript" src="../javaScript/script.js"></script>
 	<script

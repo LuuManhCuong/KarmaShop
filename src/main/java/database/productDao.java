@@ -17,16 +17,10 @@ public class productDao implements DaoInterface<product> {
 		try {
 //			1) kết nối csdl
 			Connection connect = Connector.getConnection();
-
-//			2) tạo stament
 			String sql = "select * from product";
 			PreparedStatement st = connect.prepareStatement(sql);
 
-//			3) chạy câu lệnh sql
-			System.out.println(sql);
 			ResultSet rs = st.executeQuery();
-
-//			4) lấy dữ liệu
 			while (rs.next()) {
 				String idProduct = rs.getString("idProduct");
 				String name = rs.getString("name");
