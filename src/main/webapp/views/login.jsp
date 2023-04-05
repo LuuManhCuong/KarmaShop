@@ -6,114 +6,101 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>KarmaShop</title>
+<title>Login</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta name="robots" content="noindex, nofollow">
 
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 <style type="text/css">
-  <%@include file="/styles/style.css" %>
+  .panel-heading {
+    padding: 5px 15px;
+}
+
+.panel-footer {
+	padding: 1px 15px;
+	color: #A0A0A0;
+}
+
+.profile-img {
+	width: 96px;
+	height: 96px;
+	margin: 0 auto 10px;
+	display: block;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
 </style>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-	integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-	crossorigin="anonymous" referrerpolicy="no-referrer">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
-	crossorigin="anonymous">
+
 
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
 
-
-
-	<div class="shop text-center">
+ <div class="container" style="margin-top:40px">
 		<div class="row">
-			<div class="col col-lg-3">
-
-				<h3>Category</h3>
-				<ul class="category">
-
-					<li>Men</li>
-					<li>Women</li>
-					<li>Kids</li>
-				</ul>
-
-				<h3>Brand</h3>
-				<ul class="category">
-
-					<li>Nike</li>
-					<li>Adidas</li>
-					<li>Puma</li>
-				</ul>
-
-				<h3>Color</h3>
-				<ul class="category">
-
-					<li>Red</li>
-					<li>Black</li>
-					<li>White</li>
-				</ul>
-			</div>
-
-
-			<div class="col col-lg-9">
-				<div class="container text-center">
-					<div class="row">
-
-
-						<c:forEach var="product" items="${dataProduct}">
-
-							<div class="col">
-								<div class="card" style="width: 18rem;">
-									<img
-										src="${product.thumbnail}"
-										class="card-img-top"
-										alt="img">
-									<div class="card-body">
-										<h5 class="card-title">${product.name}</h5>
-										<p class="card-text">${product.description}</p>
-										<a href="#" class="btn btn-primary">Go somewhere</a>
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong> Sign in to continue</strong>
+					</div>
+					<div class="panel-body">
+						<form role="form" action="/KarmaShop/Login" method="POST">
+							<fieldset>
+								<div class="row">
+									<div class="center-block">
+										<img class="profile-img"
+											src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
 									</div>
 								</div>
-							</div>
-
-						</c:forEach>
-
-
-
+								
+									<%
+										String baoLoi = request.getAttribute("baoLoi") + "";
+										if (baoLoi.equals("null")) {
+											baoLoi = "";
+										}
+									%>
+									<div>
+										<p style="color: red; text-align: center"><%=baoLoi%></p>
+									</div>
+								
+								<div class="row">
+									<div class="col-sm-12 col-md-10  col-md-offset-1 ">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-user"></i>
+												</span> 
+												<input class="form-control" placeholder="Username" name="username" id="username" type="text" autofocus>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-lock"></i>
+												</span>
+												<input class="form-control" placeholder="Password" name="password" id="passwoord" type="password" value="">
+											</div>
+										</div>
+										<div class="form-group">
+											<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</form>
 					</div>
-				</div>
+					<div class="panel-footer ">
+						Don't have an account! <a href="../views/register.jsp" onClick=""> Sign Up Here </a>
+					</div>
+                </div>
 			</div>
 		</div>
 	</div>
-
-
-
-	<jsp:include page="footer.jsp"></jsp:include>
-
-
-
-	<button onclick="myFunction()">Click me</button>
-
-	<p id="demo"></p>
-
-	<script>
-		function myFunction() {
-			document.getElementById("demo").innerHTML = "Hello World";
-			console.log("clicik")
-		}
-	</script>
-
-	<script type="text/javascript" src="../javaScript/script.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-		crossorigin="anonymous"></script>
+	
+	
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </body>
 </html>

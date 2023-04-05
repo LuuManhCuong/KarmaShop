@@ -1,119 +1,142 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>KarmaShop</title>
+<title>Register</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta name="robots" content="noindex, nofollow">
 
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 <style type="text/css">
-  <%@include file="/styles/style.css" %>
+  	body { padding-top:30px; 
+  		display: flex;
+  		justify-content: center;
+  	}
+	.form-control { margin-bottom: 10px; }
 </style>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-	integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-	crossorigin="anonymous" referrerpolicy="no-referrer">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
-	crossorigin="anonymous">
 
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
 
+<% 
+	String baoLoi = request.getAttribute("baoLoi")+"";
+	baoLoi = (baoLoi.equals("null"))?"":baoLoi;
+	
+	String username = request.getAttribute("username")+"";
+	username = (username.equals("null"))?"":username;
+	
+	String password = request.getAttribute("password")+"";
+	password = (password.equals("null"))?"":password;
+	
+	String email = request.getAttribute("email")+"";
+	email = (email.equals("null"))?"":email;
+	
+	String phone = request.getAttribute("phone")+"";
+	phone = (phone.equals("null"))?"":phone;
+	
+	String address = request.getAttribute("address")+"";
+	address = (address.equals("null"))?"":address;
+	
+	String gender = request.getAttribute("gender")+"";
+	gender = (gender.equals("null"))?"":gender;
+%>
+	
+	
+<div class="container">
+    
+        <div class="col-xs-12 col-sm-12 well well-sm">
+            <legend><a href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-globe"></i></a> Sign up!</legend>
+            
+            <form action="/KarmaShop/Register" method="post" class="form" role="form">
+            <input class="form-control" name="username" id="username" placeholder="User name" type="text" 
+            required="required" value="<%=username%>"/>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <input class="form-control" name="password" id="password" placeholder="Password" type="password"
+                        required="required" onkeyup="kiemTraMatKhau()" />
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <input class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" type="password" 
+                    required="required" onkeyup="kiemTraMatKhau()"/>
+                	<p id="msg" style="color: red" />
+                	                
+                	
+                </div>
+            </div>
+            
+            <input class="form-control" name="email" id="email" placeholder="Your Email" 
+            type="email" required="required" value="<%=email%>"/>
+            
+            <input class="form-control" name="phone" id="phone" placeholder="Phone number" 
+            type="text" required="required" value="<%=phone%>"/>
+            
+            <input class="form-control" name="address" id="address" placeholder="Your address" 
+            type="text" required="required" value="<%=address%>"/>
+            
 
-
-	<div class="shop text-center">
-		<div class="row">
-			<div class="col col-lg-3">
-
-				<h3>Category</h3>
-				<ul class="category">
-
-					<li>Men</li>
-					<li>Women</li>
-					<li>Kids</li>
-				</ul>
-
-				<h3>Brand</h3>
-				<ul class="category">
-
-					<li>Nike</li>
-					<li>Adidas</li>
-					<li>Puma</li>
-				</ul>
-
-				<h3>Color</h3>
-				<ul class="category">
-
-					<li>Red</li>
-					<li>Black</li>
-					<li>White</li>
-				</ul>
+			<div>
+				<label for="gender"></label> <select style="color: grey; height: 30px; border: 1px solid grey; border-radius: 5px"
+					class="form-select" id="gender" name="gender" >
+					<option selected>Gender</option>
+					<option value="male" <%=(gender=="male") ?"selected='selected'":"" %>>male</option>
+					<option value="female" <%=(gender=="female") ?"selected='selected'":""%>>female</option>
+					<option value="other"<%=(gender=="other") ?"selected='selected'":""%>>other</option>
+				</select>
 			</div>
-
-
-			<div class="col col-lg-9">
-				<div class="container text-center">
-					<div class="row">
-
-
-						<c:forEach var="product" items="${dataProduct}">
-
-							<div class="col">
-								<div class="card" style="width: 18rem;">
-									<img
-										src="${product.thumbnail}"
-										class="card-img-top"
-										alt="img">
-									<div class="card-body">
-										<h5 class="card-title">${product.name}</h5>
-										<p class="card-text">${product.description}</p>
-										<a href="#" class="btn btn-primary">Go somewhere</a>
-									</div>
-								</div>
-							</div>
-
-						</c:forEach>
-
-
-
+					
+            <br />
+            <div class="form-check mb-3" >
+						<input class="form-check-input" type="checkbox" 
+							id="dieuKhoan" name="dieuKhoan" required="required" onchange="xuLyDongY()"> 
+						<label class="form-check-label" for="dieuKhoan"> Đồng ý với <a href="#">điều
+							khoản của WebShop</a> <span style="color: red">*</span>
+						</label>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<jsp:include page="footer.jsp"></jsp:include>
-
-
-
-	<button onclick="myFunction()">Click me</button>
-
-	<p id="demo"></p>
-
-	<script>
-		function myFunction() {
-			document.getElementById("demo").innerHTML = "Hello World";
-			console.log("clicik")
-		}
-	</script>
-
-	<script type="text/javascript" src="../javaScript/script.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-		crossorigin="anonymous"></script>
+            <br />
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit" style="visibility: hidden">
+                Sign up</button>
+            </form>
+                
+        </div>
+   
+</div>
+	
+	
+	
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </body>
+
+<script type="text/javascript">
+	function kiemTraMatKhau() {
+		password = document.getElementById('password').value;
+		confirmPassword = document.getElementById('confirmPassword').value;
+		if(password != confirmPassword){
+			document.getElementById("msg").innerHTML = "Mật khẩu không khớp";
+			return false;
+		} else {
+			document.getElementById("msg").innerHTML = "";
+			return true;
+		}
+		
+	}
+	
+	function xuLyDongY() {
+		dieuKhoan = document.getElementById("dieuKhoan");
+		if(dieuKhoan.checked==true){
+			document.getElementById("submit").style.visibility="visible";
+		} else {
+			document.getElementById("submit").style.visibility="hidden";
+		}
+		
+	}
+</script>
+
 </html>
