@@ -12,6 +12,7 @@
 <meta name="robots" content="noindex, nofollow">
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
 <style type="text/css">
   	body { padding-top:30px; 
@@ -34,6 +35,9 @@
 	String password = request.getAttribute("password")+"";
 	password = (password.equals("null"))?"":password;
 	
+	String baoLoi1 = request.getAttribute("baoLoi1")+"";
+	baoLoi1 = (baoLoi1.equals("null"))?"":baoLoi1;
+	
 	String email = request.getAttribute("email")+"";
 	email = (email.equals("null"))?"":email;
 	
@@ -45,17 +49,21 @@
 	
 	String gender = request.getAttribute("gender")+"";
 	gender = (gender.equals("null"))?"":gender;
+	
 %>
 	
 	
 <div class="container">
     
         <div class="col-xs-12 col-sm-12 well well-sm">
-            <legend><a href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-globe"></i></a> Sign up!</legend>
+            <legend><a href="#"><i class="glyphicon glyphicon-globe"></i></a> Sign up!<span style="float: right; "><a href="/KarmaShop/views/login.jsp"><i class="bi bi-x-square-fill"></i></a></span></legend>
+            
             
             <form action="/KarmaShop/Register" method="post" class="form" role="form">
             <input class="form-control" name="username" id="username" placeholder="User name" type="text" 
             required="required" value="<%=username%>"/>
+            <p style="color: red" id="baoLoi"><%=baoLoi%></p>
+            
             <div class="row">
                 <div class="col-xs-6 col-md-6">
                     <input class="form-control" name="password" id="password" placeholder="Password" type="password"
@@ -72,6 +80,8 @@
             
             <input class="form-control" name="email" id="email" placeholder="Your Email" 
             type="email" required="required" value="<%=email%>"/>
+             <p style="color: red" id="baoLoi"><%=baoLoi1%></p>
+            
             
             <input class="form-control" name="phone" id="phone" placeholder="Phone number" 
             type="text" required="required" value="<%=phone%>"/>
@@ -94,15 +104,19 @@
             <div class="form-check mb-3" >
 						<input class="form-check-input" type="checkbox" 
 							id="dieuKhoan" name="dieuKhoan" required="required" onchange="xuLyDongY()"> 
-						<label class="form-check-label" for="dieuKhoan"> Đồng ý với <a href="#">điều
-							khoản của WebShop</a> <span style="color: red">*</span>
+						<label class="form-check-label" for="dieuKhoan"> I agree to the company's terms. <span style="color: red">*</span>
 						</label>
 					</div>
             <br />
             
             <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit" style="visibility: hidden">
                 Sign up</button>
+           
             </form>
+             
+			
+			     
+            
                 
         </div>
    
@@ -137,6 +151,8 @@
 		}
 		
 	}
+
+	
 </script>
 
 </html>

@@ -45,7 +45,7 @@ addCount();
 					if (us == null) {
 					%>
 					<a class="btn btn-warning me-4" style="white-space: nowrap;"
-						href="../views/login.jsp"> Login </a>
+						href="/KarmaShop/views/login.jsp"> Login </a>
 					<%
 					} else {
 					%>

@@ -237,6 +237,36 @@ public class userDao implements DaoInterface<user> {
 		return ketQua;
 	}
 	
+//	kiểm tra email
+	public boolean kiemTraEmail(String email) {
+		boolean ketQua = false;
+
+		try {
+//			1) kết nối csdl
+			Connection connect = Connector.getConnection();
+
+//			2) tạo stament
+			String sql = "select * from user where email=?";
+			PreparedStatement st = connect.prepareStatement(sql);
+			st.setString(1, email);
+
+//			3) chạy câu lệnh sql
+			ResultSet rs = st.executeQuery();
+
+//			4) lấy dữ liệu
+			while (rs.next()) {
+				return true;
+			}
+//			5) đóng kết nối
+			Connector.closeConnection(connect);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ketQua;
+	}
+	
 //	chuc nang dang nhap
 	public user Login(user t) {
 		user ketQua = null;

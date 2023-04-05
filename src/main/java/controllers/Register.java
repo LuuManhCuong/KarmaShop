@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import models.user;
 import util.MaHoaMatKhau;
 
@@ -65,6 +66,10 @@ public class Register extends HttpServlet {
 			baoLoi += "Tên đăng nhập đã tồn tại";
 		}
 		
+		if (usd.kiemTraEmail(email)) {
+			request.setAttribute("baoLoi1", "Email đã tồn tại");
+		}
+		
 		if (!password.equals(confirmPassword)) {
 			baoLoi += "Mật khẩu không khớp";
 		} else {
@@ -74,16 +79,16 @@ public class Register extends HttpServlet {
 		request.setAttribute("baoLoi", baoLoi);
 		
 		if (baoLoi.length()>0) {
-			url = "/view/register.jsp";		
+			url = "/views/register.jsp";		
 		} else {
 			Random rd = new Random();
 			String idUser = System.currentTimeMillis() + rd.nextInt(1000) +"";
 			user us = new user(idUser, username, password, email, phone, address, gender, url, 0, null);
 			usd.insert(us);
 			
-			request.setAttribute("thongbao", "Đăng ký tài khoản thành công!");
 			
 			url = "/views/login.jsp";
+			
 			
 			   ExecutorService executor = Executors.newSingleThreadExecutor();
 		        Future<String> future = executor.submit(() -> {
@@ -91,18 +96,22 @@ public class Register extends HttpServlet {
 		            Thread.sleep(5000);
 		            return "Operation completed successfully!";
 		            
+		            
 		        });
 
 		        try {
 		            String result = future.get(3, TimeUnit.SECONDS);
 		            System.out.println(result);
-		        } catch (TimeoutException e) {
+		            
+		        } catch (TimeoutException e) {		        	
 		            System.err.println("Đăng ký thành công");
 		        } catch (InterruptedException | ExecutionException e) {
 		            System.err.println("Error occurred: " + ((Throwable) e).getMessage());
 		        }
 
 		        executor.shutdown();
+		        
+		        
 		}
 		
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
