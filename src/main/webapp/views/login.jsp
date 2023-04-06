@@ -96,8 +96,12 @@
 						</form>
 					</div>
 					<div class="panel-footer ">
+<<<<<<< HEAD
 						Don't have an account! <a href="/KarmaShop/views/register.jsp"
 							onClick=""> Sign Up Here </a>
+=======
+						Don't have an account! <a href="/KarmaShop/views/register.jsp" onClick=""> Sign Up Here </a>
+>>>>>>> 75d297ec5386f8c8c1e2118edc248e128690f1f8
 					</div>
 				</div>
 			</div>
