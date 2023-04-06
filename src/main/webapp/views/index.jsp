@@ -25,6 +25,11 @@
 	rel="stylesheet"
 	integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
 	crossorigin="anonymous">
+<%
+String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+		+ request.getContextPath();
+%>
+<script src="<%=url%>/javaScript/script.js"></script>
 
 </head>
 <body>
@@ -67,18 +72,8 @@
 
 
 
-	<button onclick="myFunction()">Click me</button>
 
-	<p id="demo"></p>
 
-	<script>
-		function myFunction() {
-			document.getElementById("demo").innerHTML = "Hello World";
-			console.log("clicik")
-		}
-	</script>
-
-	<script type="text/javascript" src="../javaScript/script.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"

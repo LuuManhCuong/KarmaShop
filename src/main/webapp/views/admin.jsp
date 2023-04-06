@@ -99,16 +99,7 @@
 
 
 
-	<button onclick="myFunction()">Click me</button>
-
-	<p id="demo"></p>
-
-	<script>
-		function myFunction() {
-			document.getElementById("demo").innerHTML = "Hello World";
-			console.log("clicik")
-		}
-	</script>
+	
 
 	<script type="text/javascript" src="../javaScript/script.js"></script>
 	<script

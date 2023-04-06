@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -26,6 +27,13 @@
 	integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
 	crossorigin="anonymous">
 
+<%
+String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+		+ request.getContextPath();
+%>
+<script src="<%=url%>/javaScript/script.js"></script>
+
+
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -35,37 +43,58 @@
 	<div class="shop text-center">
 		<div class="row">
 			<div class="col col-lg-3 side-bar">
+				
+			<form>
+  <label>Chọn danh mục:</label>
+  <div>
+    <input type="radio" id="category0" name="category" checked value="All">
+    <label for="category0">All</label>
+  </div>
+  <div>
+    <input type="radio" id="category1" name="category" value="Men">
+    <label for="category1">Men</label>
+  </div>
+  <div>
+    <input type="radio" id="category2" name="category" value="Women">
+    <label for="category2">Women</label>
+  </div>
+  <div>
+    <input type="radio" id="category3" name="category" value="Kids">
+    <label for="category3">Kids</label>
+  </div>
+  
+  <label>Chọn brand:</label>
+  <div>
+    <input type="checkbox" id="brand1" name="brand" value="Nike">
+    <label for="brand1">Nike</label>
+  </div>
+  <div>
+    <input type="checkbox" id="brand2" name="brand" value="Puma">
+    <label for="brand2">Puma</label>
+  </div>
+  <div>
+    <input type="checkbox" id="brand3" name="brand" value="Van">
+    <label for="brand3">Van</label>
+  </div>
+  
+  
+  <label>Chọn size:</label>
+  <div>
+    <input type="checkbox" id="size1" name="size" value="M">
+    <label for="size1">M</label>
+  </div>
+  <div>
+    <input type="checkbox" id="size2" name="size" value="S">
+    <label for="size2">S</label>
+  </div>
+  <div>
+    <input type="checkbox" id="size3" name="size" value="L">
+    <label for="size3">L</label>
+  </div>
+</form>
+			
 
-				<h3>Category</h3>
-				<div class="category">
-					<label> <input type="radio" onchange="myFunction()" name="gender" value="male">
-						Male
-					</label>
 
-					<label> <input type="radio" onchange="myFunction()" name="gender" value="female">
-						Female
-					</label>
-
-					<label> <input type="radio" onchange="myFunction()" name="gender" value="other">
-						Other
-					</label>
-				</div>
-
-				<h3>Brand</h3>
-				<ul class="category">
-
-					<li>Nike</li>
-					<li>Adidas</li>
-					<li>Puma</li>
-				</ul>
-
-				<h3>Size</h3>
-				<ul class="category">
-
-					<li>S</li>
-					<li>M</li>
-					<li>L</li>
-				</ul>
 			</div>
 
 
@@ -128,8 +157,66 @@
 	<jsp:include page="footer.jsp"></jsp:include>
 
 
+	<script type="text/javascript">
+	function callApi(url){
+		console.log("fetch: ", url)
+		fetch(`/filter?category=${selectedCategory}&brands=${brands.join(',')}`)
+	      .then(response => response.json())
+	      .then(data => {
+	        // Hiển thị kết quả filter
+	        console.log("res : ", data)
+	      });
+	}
+	const radioButtons = document.querySelectorAll('input[type="radio"]');
+	radioButtons.forEach(radioButton => {
+	  radioButton.addEventListener('click', () => {
+	    // Lấy giá trị của radio button được chọn
+	    const checkedCategory = document.querySelector('input[name="category"]:checked').value;
+	    const checkedBrands = document.querySelectorAll('input[name="brand"]:checked');
+	    const brands = Array.from(checkedBrands).map(brand => brand.value);
+	    const checkedSizes = document.querySelectorAll('input[name="size"]:checked');
+	    const sizes = Array.from(checkedSizes).map(size => size.value);
+	    
+	    <%--
+	    console.log(checkedCategory)
+	    console.log(brands)
+	    console.log(sizes) --%>
+	    
+	    let url = "/filter?category=" + checkedCategory + "&brands=" + brands.join(',') + "&sizes=" + sizes.join(',')
 
-	<script type="text/javascript" src="../javaScript/script.js"></script>
+	 // Gửi giá trị lên server để filter
+	  	callApi(url)
+	    
+	    
+	  });
+	});
+
+	const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+	checkboxes.forEach(checkbox => {
+	  checkbox.addEventListener('click', () => {
+	    // Lấy giá trị của các checkbox được chọn
+	    const checkedCategories = document.querySelectorAll('input[name="category"]:checked');
+	    const checkedBrands = document.querySelectorAll('input[name="brand"]:checked');
+	    const checkedSizes = document.querySelectorAll('input[name="size"]:checked');
+	    
+	    const categories = Array.from(checkedCategories).map(category => category.value);
+	    const brands = Array.from(checkedBrands).map(brand => brand.value);
+	    const sizes = Array.from(checkedSizes).map(size => size.value);
+	    
+	    <%--
+	    console.log( categories)
+	    console.log(brands)
+	    console.log(sizes) --%>
+	    
+	    let url = "/filter?category=" + categories + "&brands=" + brands.join(',') + "&sizes=" + sizes.join(',')
+
+	 // Gửi giá trị lên server để filter
+	  	callApi(url)
+	    
+	  });
+	});
+	</script>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
