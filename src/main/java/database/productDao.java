@@ -56,9 +56,9 @@ public class productDao implements DaoInterface<product> {
 	public ArrayList<product> handleFilter(String cate, JSONArray brandArray, JSONArray sizeArray) {
 
 		ArrayList<product> result = new ArrayList<product>();
-		System.out.println("Category: " + cate);
-		System.out.println("Brands: " + brandArray);
-		System.out.println("Sizes: " + sizeArray);
+//		System.out.println("Category: " + cate);
+//		System.out.println("Brands: " + brandArray);
+//		System.out.println("Sizes: " + sizeArray);
 
 		String[] brands = new String[brandArray.length()];
 		for (int i = 0; i < brandArray.length(); i++) {
@@ -73,8 +73,9 @@ public class productDao implements DaoInterface<product> {
 			Connection connect = Connector.getConnection();
 			String sql = "select * from product";
 			PreparedStatement st = null;
+
+//			fitler all
 			if (cate.equals("All") && brandArray.length() == 0 && sizeArray.length() == 0) {
-				System.out.println("lấy hết");
 				sql = "select * from product";
 				st = connect.prepareStatement(sql);
 			} else if (!cate.equals("All") && brandArray.length() > 0 && sizeArray.length() > 0) {
@@ -89,8 +90,59 @@ public class productDao implements DaoInterface<product> {
 				for (int i = 0; i < sizes.length; i++) {
 					st.setString(i + brands.length + 2, sizes[i]);
 				}
-				System.out.println("sql cả 3: " + st.toString());
 
+//				filter by category
+			} else if (!cate.equals("All") && brandArray.length() == 0 && sizeArray.length() == 0) {
+				sql = "select * from product WHERE category = ?";
+				st = connect.prepareStatement(sql);
+				st.setString(1, cate);
+
+//				filter by brand
+			} else if (!cate.equals("All") && brandArray.length() > 0 && sizeArray.length() == 0) {
+				sql = "select * from product WHERE category = ? And brand IN ("
+						+ String.join(",", Collections.nCopies(brands.length, "?")) + ")";
+				st = connect.prepareStatement(sql);
+				st.setString(1, cate);
+				for (int i = 0; i < brands.length; i++) {
+					st.setString(i + 2, brands[i]);
+				}
+			} else if (cate.equals("All") && brandArray.length() > 0 && sizeArray.length() == 0) {
+				sql = "select * from product WHERE brand IN ("
+						+ String.join(",", Collections.nCopies(brands.length, "?")) + ")";
+				st = connect.prepareStatement(sql);
+				for (int i = 0; i < brands.length; i++) {
+					st.setString(i + 1, brands[i]);
+				}
+
+//				filter by size
+			} else if (!cate.equals("All") && brandArray.length() == 0 && sizeArray.length() > 0) {
+				sql = "select * from product WHERE category = ?  AND size in ("
+						+ String.join(",", Collections.nCopies(sizes.length, "?")) + ")";
+				st = connect.prepareStatement(sql);
+				st.setString(1, cate);
+				for (int i = 0; i < sizes.length; i++) {
+					st.setString(i + 2, sizes[i]);
+				}
+			} else if (cate.equals("All") && brandArray.length() == 0 && sizeArray.length() > 0) {
+				sql = "select * from product WHERE  size in ("
+						+ String.join(",", Collections.nCopies(sizes.length, "?")) + ")";
+				st = connect.prepareStatement(sql);
+				for (int i = 0; i < sizes.length; i++) {
+					st.setString(i + 1, sizes[i]);
+				}
+
+//				filter by All + brand + size
+			} else if (cate.equals("All") && brandArray.length() > 0 && sizeArray.length() > 0) {
+				sql = "select * from product WHERE  brand IN ("
+						+ String.join(",", Collections.nCopies(brands.length, "?")) + ") AND size in ("
+						+ String.join(",", Collections.nCopies(sizes.length, "?")) + ")";
+				st = connect.prepareStatement(sql);
+				for (int i = 0; i < brands.length; i++) {
+					st.setString(i + 1, brands[i]);
+				}
+				for (int i = 0; i < sizes.length; i++) {
+					st.setString(i + brands.length + 1, sizes[i]);
+				}
 			} else {
 				System.out.println("chưa xử lý");
 				st = connect.prepareStatement(sql);

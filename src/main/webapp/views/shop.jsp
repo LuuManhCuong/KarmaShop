@@ -177,39 +177,48 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 			  // Xử lý kết quả trả về ở đây
 			  let container = document.getElementById('shop-container');
 			  console.log(container)
+			  var htmls =""
+			  if(data.length > 0 ){
+				  console.log("render")
+				  var htmls = data.map(product => {
+				        return `
+				        <div  class="col">
+						<div class="card" style="width: 18rem;">
+							<div class="label">
+							<p>\${product.category}</p>
+								<p>\${product.brand}</p>
+								<p>\${product.size}</p>
+							</div>
+							<button class="like">
+								<i class="fa-regular fa-heart"></i>
+								<i class="fa-solid fa-heart"></i> 
+							</button>
+							<img src=\${product.thumbnail} class="card-img-top" alt="img">
+							<div class="card-body">
+								<h5 class="card-title">\${product.name}</h5>
+								<p class="card-text">\${product.description}</p>
+
+
+								<div class="buy-btn">
+									<a href="#" class="btn btn-primary">Buy Now</a> <a href="#"
+										class="btn btn-primary">Add To Cart</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				        `
+				    });
+				container.innerHTML = htmls.join('')
+							  
+				  
+			  } else {
+				  
+					container.innerHTML = "<h1>Không tìm thấy dữ liệu</h1>"
+							  
+			  }
 			  
-    var htmls = data.map(product => {
-    	console.log("e: ", product.name)
-        return `
-        <div  class="col">
-		<div class="card" style="width: 18rem;">
-			<div class="label">
-			<p>\${product.category}</p>
-				<p>\${product.brand}</p>
-				<p>\${product.size}</p>
-			</div>
-			<button class="like">
-				<i class="fa-regular fa-heart"></i>
-				<i class="fa-solid fa-heart"></i> 
-			</button>
-			<img src=\${product.thumbnail} class="card-img-top" alt="img">
-			<div class="card-body">
-				<h5 class="card-title">\${product.name}</h5>
-				<p class="card-text">\${product.description}</p>
-
-
-				<div class="buy-btn">
-					<a href="#" class="btn btn-primary">Buy Now</a> <a href="#"
-						class="btn btn-primary">Add To Cart</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-        `
-    });
-			  container.innerHTML = htmls.join('')
-			  
+   
 			  
 			})
 			.catch(error => {

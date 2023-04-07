@@ -32,18 +32,17 @@ public class userController extends HttpServlet {
 		
 		userDao usDao = new userDao();
 		List<user> rs = usDao.selectAll();
-		response.setContentType("application/json");
-		PrintWriter out = response.getWriter();
-		Gson gson = new Gson();
-		String jsonProducts = gson.toJson(rs);
-		out.print(jsonProducts);
-		out.flush();
-		
-		
-//		RequestDispatcher rd = request.getRequestDispatcher("views/index.jsp");
+//		response.setContentType("application/json");
+//		PrintWriter out = response.getWriter();
+//		Gson gson = new Gson();
+//		String jsonProducts = gson.toJson(rs);
+//		out.print(jsonProducts);
+//		out.flush();
 //		
-//		request.setAttribute("userList", rs);
-//		rd.forward(request, response);
+//		
+		RequestDispatcher rd = request.getRequestDispatcher("views/index.jsp");		
+		request.setAttribute("userList", rs);
+		rd.forward(request, response);
 
 	}
 	
