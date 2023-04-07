@@ -93,9 +93,9 @@ public class orderDetailsDao implements DaoInterface<orderDetails> {
 				Date orderDetailsDate = rs.getDate("orderDetailsDate");
 				Date shipDate = rs.getDate("shipDate");
 
-				orderDetails = new orderDetails(idorderDetails, status, paymentBy, statusPayment, paid, owed,
-						orderDetailsDate, shipDate);
-				return orderDetails;
+//				orderDetails = new orderDetails(idorderDetails, status, paymentBy, statusPayment, paid, owed,
+//						orderDetailsDate, shipDate);
+//				return orderDetails;
 			}
 //			5) đóng kết nối
 			Connector.closeConnection(connect);
@@ -121,7 +121,11 @@ public class orderDetailsDao implements DaoInterface<orderDetails> {
 						+ "(`idorderDetails`, `status`, `paymentBy`, `statusPayment`, `paid`, `owed`, `orderDetailsDate`, `shipDate`) "
 						+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);\r\n";
 				PreparedStatement st = connect.prepareStatement(sql);
+<<<<<<< HEAD
 //				st.setString(1, t.getIdOrderDetails());
+=======
+//				st.setString(1, t.getIdorderDetails());
+>>>>>>> 7bb8fe291a45e13009ef523ef6bb31b280063e3e
 //				st.setString(2, t.getStatus());
 //				st.setString(3, t.getPaymentBy());
 //				st.setString(4, t.getStatusPayment());
@@ -169,7 +173,11 @@ public class orderDetailsDao implements DaoInterface<orderDetails> {
 //				2) tạo stament
 				String sql = "DELETE FROM `karmar_shop`.`orderDetails` WHERE (`idorderDetails` = ?);\r\n";
 				PreparedStatement st = connect.prepareStatement(sql);
+<<<<<<< HEAD
 				st.setString(1, t.getIdOrderDetails());
+=======
+//				st.setString(1, t.getIdorderDetails());
+>>>>>>> 7bb8fe291a45e13009ef523ef6bb31b280063e3e
 
 //				3) chạy câu lệnh sql
 				System.out.println(sql);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="5.0">
-  
   <servlet>
     <description></description>
     <display-name>productController</display-name>
@@ -39,5 +38,85 @@
   <servlet-mapping>
     <servlet-name>userControllers</servlet-name>
     <url-pattern>/userControllers</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>gfds</display-name>
+    <servlet-name>gfds</servlet-name>
+    <servlet-class>gfds</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>gfds</servlet-name>
+    <url-pattern>/gfds</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>shop</display-name>
+    <servlet-name>shop</servlet-name>
+    <servlet-class>controllers.shop</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>shop</servlet-name>
+    <url-pattern>/shop</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Register</display-name>
+    <servlet-name>Register</servlet-name>
+    <servlet-class>controllers.Register</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Register</servlet-name>
+    <url-pattern>/Register</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>controllers.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogOut</display-name>
+    <servlet-name>LogOut</servlet-name>
+    <servlet-class>controllers.LogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOut</servlet-name>
+    <url-pattern>/LogOut</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>shopController</display-name>
+    <servlet-name>shopController</servlet-name>
+    <servlet-class>controllers.shopController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>shopController</servlet-name>
+    <url-pattern>/shopController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>filter</display-name>
+    <servlet-name>filter</servlet-name>
+    <servlet-class>controllers.filter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>filter</servlet-name>
+    <url-pattern>/filter</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>filterController</display-name>
+    <servlet-name>filterController</servlet-name>
+    <servlet-class>controllers.filterController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>filterController</servlet-name>
+    <url-pattern>/filterController</url-pattern>
   </servlet-mapping>
 </web-app>

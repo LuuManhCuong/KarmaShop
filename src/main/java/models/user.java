@@ -3,6 +3,11 @@ package models;
 import java.sql.Date;
 
 public class user {
+	public user() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	private String idUser, username, password, email, phone, address, gender, avatarUrl;
 	private int isAdmin;
 	private Date createAtDate;

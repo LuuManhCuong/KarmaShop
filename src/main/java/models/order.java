@@ -71,6 +71,13 @@ public class order {
 	public void setShipDate(Date shipDate) {
 		this.shipDate = shipDate;
 	}
+	
+	
+
+	public order() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public order(String idOrder, String status, String paymentBy, String statusPayment, double paid, double owed,
 			Date orderDate, Date shipDate) {

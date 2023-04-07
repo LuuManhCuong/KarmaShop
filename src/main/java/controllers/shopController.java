@@ -1,35 +1,34 @@
 package controllers;
 
 import jakarta.servlet.RequestDispatcher;
-
 import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import models.orderDetails;
+import models.product;
+
 import java.io.IOException;
-import java.util.List;
-import database.orderDetailsDao;
+import java.util.ArrayList;
 
+import database.productDao;
 
-public class orderDetailsController extends HttpServlet {
+@WebServlet("/shopPage/*")
+public class shopController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public orderDetailsController() {
+
+	public shopController() {
 		super();
 	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html; charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
-
-		orderDetailsDao odDetailDao = new orderDetailsDao();
-		List<orderDetails> rs = odDetailDao.selectAll();
-		
-
-		RequestDispatcher rd = request.getRequestDispatcher("views/index.jsp");
-		request.setAttribute("rs", rs);
+		productDao prdDao = new productDao();
+		ArrayList<product> dataProduct = prdDao.selectAll();
+		request.setAttribute("dataProduct", dataProduct);
+		RequestDispatcher rd = request.getRequestDispatcher("/views/shop.jsp");
 		rd.forward(request, response);
-		
 	}
 
 }

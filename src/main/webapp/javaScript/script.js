@@ -1,7 +1,5 @@
 /**
  * 
  */
-console.log("xin chàooo")
+console.log("hello ")
 
-let a = document.getElementsByClassName("header")
-console.log(a)

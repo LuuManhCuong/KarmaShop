@@ -206,18 +206,124 @@ public class userDao implements DaoInterface<user> {
 		}
 		return 0;
 	}
+	
+//	kiem tra ten dang nhap
+	public boolean kiemTraTenDangNhap(String username) {
+		boolean ketQua = false;
 
-	public static void main(String[] args) {
-		userDao usDao = new userDao();
-		ArrayList<user> r = usDao.selectAll();
-		for (user user : r) {
-			System.out.println("user" + user.toString())	;
+		try {
+//			1) kết nối csdl
+			Connection connect = Connector.getConnection();
+
+//			2) tạo stament
+			String sql = "select * from user where username=?";
+			PreparedStatement st = connect.prepareStatement(sql);
+			st.setString(1, username);
+
+//			3) chạy câu lệnh sql
+			ResultSet rs = st.executeQuery();
+
+//			4) lấy dữ liệu
+			while (rs.next()) {
+				return true;
+			}
+//			5) đóng kết nối
+			Connector.closeConnection(connect);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		user fUser1 = new user("1", "Zin2", "zin123f", "zi1n@gmail.com", null, null, null, null, 0, null);
-		user findUser = usDao.selectById(fUser1);
-		
-		System.out.println("xin chào " + findUser.getUsername());
+
+		return ketQua;
 	}
+	
+//	kiểm tra email
+	public boolean kiemTraEmail(String email) {
+		boolean ketQua = false;
+
+		try {
+//			1) kết nối csdl
+			Connection connect = Connector.getConnection();
+
+//			2) tạo stament
+			String sql = "select * from user where email=?";
+			PreparedStatement st = connect.prepareStatement(sql);
+			st.setString(1, email);
+
+//			3) chạy câu lệnh sql
+			ResultSet rs = st.executeQuery();
+
+//			4) lấy dữ liệu
+			while (rs.next()) {
+				return true;
+			}
+//			5) đóng kết nối
+			Connector.closeConnection(connect);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ketQua;
+	}
+	
+//	chuc nang dang nhap
+	public user Login(user t) {
+		user ketQua = null;
+
+		try {
+//			1) kết nối csdl
+			Connection connect = Connector.getConnection();
+
+//			2) tạo stament
+			String sql = "select * from user where username=? and password=?";
+			PreparedStatement st = connect.prepareStatement(sql);
+			st.setString(1, t.getUsername());
+			st.setString(2, t.getPassword());
+
+//			3) chạy câu lệnh sql
+			ResultSet rs = st.executeQuery();
+
+//			4) lấy dữ liệu
+			while (rs.next()) {
+				String idUser = rs.getString("idUser");
+				String username = rs.getString("username");
+				String password = rs.getString("password");
+				String email = rs.getString("email");
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				String gender = rs.getString("gender");
+				String avatarUrl = rs.getString("avatarUrl");
+				int isAdmin = rs.getInt("isAdmin");
+				Date createAtDate = rs.getDate("createAtDate");
+
+				ketQua = new user(idUser, username, password, email, phone, address, gender, avatarUrl, isAdmin, createAtDate);
+				return ketQua;
+			}
+
+//			5) đóng kết nối
+			Connector.closeConnection(connect);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ketQua;
+	}
+
+
+//	public static void main(String[] args) {
+//		userDao usDao = new userDao();
+//		ArrayList<user> r = usDao.selectAll();
+//		for (user user : r) {
+//			System.out.println("user" + user.toString())	;
+//		}
+//		
+//		user fUser1 = new user("1", "Zin2", "zin123f", "zi1n@gmail.com", null, null, null, null, 0, null);
+//		
+//		user findUser = usDao.selectById(fUser1);
+//		
+//		System.out.println("xin chào " + findUser.getUsername());
+//	}
 
 }

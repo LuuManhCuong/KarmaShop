@@ -1,3 +1,4 @@
+<%@page import="models.user"%>
 <%!int pageCount = 0;
 
 	void addCount() {
@@ -6,6 +7,10 @@
 <%
 addCount();
 %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <html>
 
 
@@ -21,7 +26,7 @@ addCount();
 	</div>
 	<ul class="header-menu-list">
 		<li class="header-menu"><a href="/KarmaShop/userController">Home</a></li>
-		<li class="header-menu"><a href="/KarmaShop/productController">Shop</a></li>
+		<li class="header-menu"><a href="/KarmaShop/shopController">Shop</a></li>
 		<li class="header-menu"><a href="#">Blog</a></li>
 		<li class="header-menu"><a href="#">Contact</a></li>
 		<li class="header-menu"><a href="#">Admin</a></li>
@@ -31,9 +36,38 @@ addCount();
 		<i class="fa-sharp fa-solid fa-cart-shopping"></i>
 	</div>
 
-	<div class="header-user header-btn">
-		<i class="fa-regular fa-user"></i>
+	<%
+	Object obj = session.getAttribute("usernew");
+	user us = null;
+	if (obj != null)
+		us = (user) obj;
+
+	if (us == null) {
+	%>
+	<a class="btn btn-warning me-4" style="white-space: nowrap;"
+		href="/KarmaShop/views/login.jsp"> Login </a>
+	<%
+	} else {
+	%>
+	<!-- Example single danger button -->
+	<div class="btn-group me-4">
+		<button type="button" style="white-space: nowrap;"
+			class="btn bg-warning text-black btn-danger dropdown-toggle"
+			data-bs-toggle="dropdown" aria-expanded="false">
+			<%=us.getUsername()%>
+		</button>
+		<ul class="dropdown-menu">
+			<li><a class="dropdown-item" href="#">Update profile</a></li>
+			<li><a class="dropdown-item" href="#">Order</a></li>
+			<li><hr class="dropdown-divider"></li>
+			<li><a class="dropdown-item" href="/KarmaShop/LogOut">Log
+					out</a></li>
+		</ul>
 	</div>
+	<%
+	}
+	%>
+
 
 
 </div>
