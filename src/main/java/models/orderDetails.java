@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.Date;
+
 public class orderDetails {
 	private String idOrderDetails;
 	private order order;
@@ -72,6 +74,14 @@ public class orderDetails {
 		this.price = price;
 		this.vat = vat;
 		this.totalPrice = totalPrice;
+	}
+	public orderDetails(String idorderDetails2, String status, String paymentBy, String statusPayment, Double paid,
+			Double owed, Date orderDetailsDate, Date shipDate) {
+		// TODO Auto-generated constructor stub
+	}
+	public String getStatus() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
