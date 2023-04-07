@@ -11,10 +11,10 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta name="robots" content="noindex, nofollow">
-
 <style type="text/css">
   <%@include file="/styles/style.css" %>
 </style>
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
 	integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
@@ -43,56 +43,56 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 	<div class="shop text-center">
 		<div class="row">
 			<div class="col col-lg-3 side-bar">
-				
-			<form>
-  <label>Chọn danh mục:</label>
-  <div>
-    <input type="radio" id="category0" name="category" checked value="All">
-    <label for="category0">All</label>
-  </div>
-  <div>
-    <input type="radio" id="category1" name="category" value="Men">
-    <label for="category1">Men</label>
-  </div>
-  <div>
-    <input type="radio" id="category2" name="category" value="Women">
-    <label for="category2">Women</label>
-  </div>
-  <div>
-    <input type="radio" id="category3" name="category" value="Kids">
-    <label for="category3">Kids</label>
-  </div>
-  
-  <label>Chọn brand:</label>
-  <div>
-    <input type="checkbox" id="brand1" name="brand" value="Nike">
-    <label for="brand1">Nike</label>
-  </div>
-  <div>
-    <input type="checkbox" id="brand2" name="brand" value="Puma">
-    <label for="brand2">Puma</label>
-  </div>
-  <div>
-    <input type="checkbox" id="brand3" name="brand" value="Van">
-    <label for="brand3">Van</label>
-  </div>
-  
-  
-  <label>Chọn size:</label>
-  <div>
-    <input type="checkbox" id="size1" name="size" value="M">
-    <label for="size1">M</label>
-  </div>
-  <div>
-    <input type="checkbox" id="size2" name="size" value="S">
-    <label for="size2">S</label>
-  </div>
-  <div>
-    <input type="checkbox" id="size3" name="size" value="L">
-    <label for="size3">L</label>
-  </div>
-</form>
-			
+
+				<form>
+					<label>Chọn danh mục:</label>
+					<div>
+						<input type="radio" id="category0" name="category" checked
+							value="All"> <label for="category0">All</label>
+					</div>
+					<div>
+						<input type="radio" id="category1" name="category" value="Men">
+						<label for="category1">Men</label>
+					</div>
+					<div>
+						<input type="radio" id="category2" name="category" value="Women">
+						<label for="category2">Women</label>
+					</div>
+					<div>
+						<input type="radio" id="category3" name="category" value="Kids">
+						<label for="category3">Kids</label>
+					</div>
+
+					<label>Chọn brand:</label>
+					<div>
+						<input type="checkbox" id="brand1" name="brand" value="Nike">
+						<label for="brand1">Nike</label>
+					</div>
+					<div>
+						<input type="checkbox" id="brand2" name="brand" value="Puma">
+						<label for="brand2">Puma</label>
+					</div>
+					<div>
+						<input type="checkbox" id="brand3" name="brand" value="Van">
+						<label for="brand3">Van</label>
+					</div>
+
+
+					<label>Chọn size:</label>
+					<div>
+						<input type="checkbox" id="size1" name="size" value="M"> <label
+							for="size1">M</label>
+					</div>
+					<div>
+						<input type="checkbox" id="size2" name="size" value="S"> <label
+							for="size2">S</label>
+					</div>
+					<div>
+						<input type="checkbox" id="size3" name="size" value="L"> <label
+							for="size3">L</label>
+					</div>
+				</form>
+
 
 
 			</div>
@@ -100,12 +100,12 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 
 			<div class="col col-lg-9 block-product">
 				<div class="container text-center">
-					<div class="row">
+					<div class="row" id="shop-container">
 
-
+						<%-- 
 						<c:forEach var="product" items="${dataProduct}">
 
-							<div class="col">
+							<div  class="col">
 								<div class="card" style="width: 18rem;">
 									<div class="label">
 										<p>${product.category}</p>
@@ -114,7 +114,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 									</div>
 									<button class="like">
 										<i class="fa-regular fa-heart"></i>
-										<%--<i class="fa-solid fa-heart"></i> --%>
+										<i class="fa-solid fa-heart"></i> 
 									</button>
 									<img src="${product.thumbnail}" class="card-img-top" alt="img">
 									<div class="card-body">
@@ -131,7 +131,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 							</div>
 
 						</c:forEach>
-
+--%>
 
 						<nav class="paginate" aria-label="Page navigation example">
 							<ul class="pagination">
@@ -158,34 +158,98 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 
 
 	<script type="text/javascript">
-	function callApi(url){
-		console.log("fetch: ", url)
-		fetch(`/filter?category=${selectedCategory}&brands=${brands.join(',')}`)
-	      .then(response => response.json())
-	      .then(data => {
-	        // Hiển thị kết quả filter
-	        console.log("res : ", data)
-	      });
+	function callApi(url, category, brands, sizes){
+		
+		<%--console.log( "fetch: ", "\"" + url + "\"")--%>
+		fetch("/KarmaShop/filterController", {
+			  method: 'POST',
+			  headers: {
+			    'Content-Type': 'application/json'
+			  },
+			  body: JSON.stringify({
+			    category: category,
+			    brands: brands,
+			    sizes: sizes,
+			  })
+			})
+			.then(response => response.json())
+			.then(data => {
+			  // Xử lý kết quả trả về ở đây
+			  let container = document.getElementById('shop-container');
+			  console.log(container)
+			  
+    var htmls = data.map(product => {
+    	console.log("e: ", product.name)
+        return `
+        <div  class="col">
+		<div class="card" style="width: 18rem;">
+			<div class="label">
+			<p>\${product.category}</p>
+				<p>\${product.brand}</p>
+				<p>\${product.size}</p>
+			</div>
+			<button class="like">
+				<i class="fa-regular fa-heart"></i>
+				<i class="fa-solid fa-heart"></i> 
+			</button>
+			<img src=\${product.thumbnail} class="card-img-top" alt="img">
+			<div class="card-body">
+				<h5 class="card-title">\${product.name}</h5>
+				<p class="card-text">\${product.description}</p>
+
+
+				<div class="buy-btn">
+					<a href="#" class="btn btn-primary">Buy Now</a> <a href="#"
+						class="btn btn-primary">Add To Cart</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+        `
+    });
+			  container.innerHTML = htmls.join('')
+			  
+			  
+			})
+			.catch(error => {
+			  console.error('Lỗi:', error);
+			});
+
+		
 	}
 	const radioButtons = document.querySelectorAll('input[type="radio"]');
 	radioButtons.forEach(radioButton => {
 	  radioButton.addEventListener('click', () => {
-	    // Lấy giá trị của radio button được chọn
-	    const checkedCategory = document.querySelector('input[name="category"]:checked').value;
-	    const checkedBrands = document.querySelectorAll('input[name="brand"]:checked');
-	    const brands = Array.from(checkedBrands).map(brand => brand.value);
-	    const checkedSizes = document.querySelectorAll('input[name="size"]:checked');
-	    const sizes = Array.from(checkedSizes).map(size => size.value);
-	    
-	    <%--
-	    console.log(checkedCategory)
-	    console.log(brands)
-	    console.log(sizes) --%>
-	    
-	    let url = "/filter?category=" + checkedCategory + "&brands=" + brands.join(',') + "&sizes=" + sizes.join(',')
-
-	 // Gửi giá trị lên server để filter
-	  	callApi(url)
+		// Lấy giá trị của các checkbox được chọn
+		    const checkedCategories = document.querySelectorAll('input[name="category"]:checked');
+		
+		    const checkedBrands = document.querySelectorAll('input[name="brand"]:checked');
+		    const checkedSizes = document.querySelectorAll('input[name="size"]:checked');
+		    
+		    const category = Array.from(checkedCategories).map(category => category.value);
+		    
+		    if(category[0] === "All") {
+		    	console.log("uncheck")
+		    	checkedBrands.forEach((brand) => {
+		    		  brand.checked = false;
+		    		});
+		    	checkedSizes.forEach((brand) => {
+		    		  brand.checked = false;
+		    		});
+		    	// Gửi giá trị lên server để filter
+			   callApi("",category, [], [])
+		    } else {
+		    	
+			    const brands = Array.from(checkedBrands).map(brand => brand.value);
+			    const sizes = Array.from(checkedSizes).map(size => size.value);
+		    
+			    let url = "/filter?category=" + category + "&brands=" + brands.join(',') + "&sizes=" + sizes.join(',')
+		
+			 // Gửi giá trị lên server để filter
+			  	callApi(url, category, brands, sizes)
+		   }
+		    
 	    
 	    
 	  });
@@ -199,19 +263,16 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 	    const checkedBrands = document.querySelectorAll('input[name="brand"]:checked');
 	    const checkedSizes = document.querySelectorAll('input[name="size"]:checked');
 	    
-	    const categories = Array.from(checkedCategories).map(category => category.value);
+	    const category = Array.from(checkedCategories).map(category => category.value);
 	    const brands = Array.from(checkedBrands).map(brand => brand.value);
 	    const sizes = Array.from(checkedSizes).map(size => size.value);
 	    
-	    <%--
-	    console.log( categories)
-	    console.log(brands)
-	    console.log(sizes) --%>
+	 
 	    
-	    let url = "/filter?category=" + categories + "&brands=" + brands.join(',') + "&sizes=" + sizes.join(',')
+	    let url = "/filter?category=" + category + "&brands=" + brands.join(',') + "&sizes=" + sizes.join(',')
 
 	 // Gửi giá trị lên server để filter
-	  	callApi(url)
+	  	callApi(url, category, brands, sizes)
 	    
 	  });
 	});

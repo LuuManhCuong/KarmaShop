@@ -11,7 +11,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.user;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
+import com.google.gson.Gson;
 
 import database.userDao;
 
@@ -29,11 +32,38 @@ public class userController extends HttpServlet {
 		
 		userDao usDao = new userDao();
 		List<user> rs = usDao.selectAll();
-		RequestDispatcher rd = request.getRequestDispatcher("views/index.jsp");
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		Gson gson = new Gson();
+		String jsonProducts = gson.toJson(rs);
+		out.print(jsonProducts);
+		out.flush();
 		
-		request.setAttribute("userList", rs);
-		rd.forward(request, response);
+		
+//		RequestDispatcher rd = request.getRequestDispatcher("views/index.jsp");
+//		
+//		request.setAttribute("userList", rs);
+//		rd.forward(request, response);
 
+	}
+	
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		
+		userDao usDao = new userDao();
+		List<user> rs = usDao.selectAll();
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		Gson gson = new Gson();
+		String jsonProducts = gson.toJson(rs);
+		out.print(jsonProducts);
+		out.flush();
+		
+		
 	}
 
 }

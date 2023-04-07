@@ -6,6 +6,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.json.JSONArray;
 
 import models.product;
 
@@ -19,6 +23,78 @@ public class productDao implements DaoInterface<product> {
 			Connection connect = Connector.getConnection();
 			String sql = "select * from product";
 			PreparedStatement st = connect.prepareStatement(sql);
+
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String idProduct = rs.getString("idProduct");
+				String name = rs.getString("name");
+				String description = rs.getString("description");
+				String brand = rs.getString("brand");
+				String category = rs.getString("category");
+				String thumbnail = rs.getString("thumbnail");
+				String size = rs.getString("size");
+				String color = rs.getString("color");
+				int quantity = rs.getInt("quantity");
+				int like = rs.getInt("like");
+
+				product product = new product(idProduct, name, description, category, brand, size, thumbnail, color,
+						quantity, like);
+				result.add(product);
+
+			}
+
+//			5) đóng kết nối
+			Connector.closeConnection(connect);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	public ArrayList<product> handleFilter(String cate, JSONArray brandArray, JSONArray sizeArray) {
+
+		ArrayList<product> result = new ArrayList<product>();
+		System.out.println("Category: " + cate);
+		System.out.println("Brands: " + brandArray);
+		System.out.println("Sizes: " + sizeArray);
+
+		String[] brands = new String[brandArray.length()];
+		for (int i = 0; i < brandArray.length(); i++) {
+			brands[i] = brandArray.get(i).toString();
+		}
+		String[] sizes = new String[sizeArray.length()];
+		for (int i = 0; i < sizeArray.length(); i++) {
+			sizes[i] = sizeArray.get(i).toString();
+		}
+		try {
+//			1) kết nối csdl
+			Connection connect = Connector.getConnection();
+			String sql = "select * from product";
+			PreparedStatement st = null;
+			if (cate.equals("All") && brandArray.length() == 0 && sizeArray.length() == 0) {
+				System.out.println("lấy hết");
+				sql = "select * from product";
+				st = connect.prepareStatement(sql);
+			} else if (!cate.equals("All") && brandArray.length() > 0 && sizeArray.length() > 0) {
+				sql = "select * from product WHERE category = ? And brand IN ("
+						+ String.join(",", Collections.nCopies(brands.length, "?")) + ") AND size in ("
+						+ String.join(",", Collections.nCopies(sizes.length, "?")) + ")";
+				st = connect.prepareStatement(sql);
+				st.setString(1, cate);
+				for (int i = 0; i < brands.length; i++) {
+					st.setString(i + 2, brands[i]);
+				}
+				for (int i = 0; i < sizes.length; i++) {
+					st.setString(i + brands.length + 2, sizes[i]);
+				}
+				System.out.println("sql cả 3: " + st.toString());
+
+			} else {
+				System.out.println("chưa xử lý");
+				st = connect.prepareStatement(sql);
+			}
 
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {

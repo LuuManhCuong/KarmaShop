@@ -109,4 +109,14 @@
     <servlet-name>filter</servlet-name>
     <url-pattern>/filter</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>filterController</display-name>
+    <servlet-name>filterController</servlet-name>
+    <servlet-class>controllers.filterController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>filterController</servlet-name>
+    <url-pattern>/filterController</url-pattern>
+  </servlet-mapping>
 </web-app>

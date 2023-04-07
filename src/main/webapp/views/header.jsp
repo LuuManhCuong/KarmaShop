@@ -36,7 +36,6 @@ addCount();
 		<i class="fa-sharp fa-solid fa-cart-shopping"></i>
 	</div>
 
-<<<<<<< HEAD
 	<%
 	Object obj = session.getAttribute("usernew");
 	user us = null;
@@ -69,31 +68,6 @@ addCount();
 	}
 	%>
 
-=======
-					if (us == null) {
-					%>
-					<a class="btn btn-warning me-4" style="white-space: nowrap;"
-						href="/KarmaShop/views/login.jsp"> Login </a>
-					<%
-					} else {
-					%>
-					<!-- Example single danger button -->
-					<div class="btn-group me-4">
-					  <button type="button" style="white-space: nowrap;" class="btn bg-warning text-black btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-					    <%=us.getUsername()%>
-					  </button>
-					  <ul class="dropdown-menu">
-					    <li><a class="dropdown-item" href="#">Update profile</a></li>
-					    <li><a class="dropdown-item" href="#">Order</a></li>
-					    <li><hr class="dropdown-divider"></li>
-					    <li><a class="dropdown-item" href="/KarmaShop/LogOut">Log out</a></li>
-					  </ul>
-					</div>
-					<%
-					}
-					%>
-	
->>>>>>> 75d297ec5386f8c8c1e2118edc248e128690f1f8
 
 
 </div>
