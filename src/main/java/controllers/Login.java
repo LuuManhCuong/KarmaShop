@@ -1,6 +1,7 @@
 package controllers;
 
 import jakarta.servlet.RequestDispatcher;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -60,6 +61,7 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 //			luu session
 			session.setAttribute("usernew", usernew);
+			
 			url = "/views/index.jsp";
 		} else {
 			request.setAttribute("baoLoi", "Tên đăng nhập hoặc mật khẩu không đúng");

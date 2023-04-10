@@ -30,5 +30,8 @@ public class shopController extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/views/shop.jsp");
 		rd.forward(request, response);
 	}
+	
+	
+	
 
 }

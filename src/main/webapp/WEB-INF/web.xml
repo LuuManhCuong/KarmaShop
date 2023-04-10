@@ -119,4 +119,14 @@
     <servlet-name>filterController</servlet-name>
     <url-pattern>/filterController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>mainController</display-name>
+    <servlet-name>mainController</servlet-name>
+    <servlet-class>controllers.mainController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mainController</servlet-name>
+    <url-pattern>/mainController</url-pattern>
+  </servlet-mapping>
 </web-app>

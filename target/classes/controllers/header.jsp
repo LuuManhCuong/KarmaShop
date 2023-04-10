@@ -1,11 +1,8 @@
-<%@page import="models.cartModel"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="models.user"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 <%
 String active = request.getRequestURI();
-ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dataCart");
 %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -29,7 +26,7 @@ ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dat
 	<ul class="header-menu-list">
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("index.jsp") ? "active" : ""%>"><a
-			href="/KarmaShop/views/index.jsp">Home</a></li>
+			href="/KarmaShop/userController">Home</a></li>
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("shop.jsp") ? "active" : ""%>"><a
 			href="/KarmaShop/shopController">Shop</a></li>
@@ -47,30 +44,68 @@ ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dat
 	<div class="header-cart header-btn">
 		<i class="fa-sharp fa-solid fa-cart-shopping"></i>
 		<div class="header-cart-sub">
+		
+		
+		
+		<c:forEach var="product" items="${dataProduct}">
+
+							<div  class="col">
+								<div class="card" style="width: 18rem;">
+									<div class="label">
+										<p>${product.category}</p>
+										<p>${product.brand}</p>
+										<p>${product.size}</p>
+									</div>
+									<button class="like">
+										<i class="fa-regular fa-heart"></i>
+										<i class="fa-solid fa-heart"></i> 
+									</button>
+									<img src="${product.thumbnail}" class="card-img-top" alt="img">
+									<div class="card-body">
+										<h5 class="card-title">${product.name}</h5>
+										<p class="card-text">${product.description}</p>
 
 
-			<c:forEach var="product" items="${dataCart}">
+										<div class="buy-btn">
+											<a href="#" class="btn btn-primary">Buy Now</a> <a href="#"
+												class="btn btn-primary">Add To Cart</a>
+										</div>
+									</div>
+								</div>
+							</div>
 
-				<div class="header-cart-item">
-					<img alt="img" src="${product.thumbnail }">
-					<div class="header-cart-item-context">
-						<h3>${product.productName }</h3>
-						<p>
-							${product.price} <span style="color: red;"> x
-								${product.inCart }</span>
-						</p>
-					</div>
-					<div class="cart-close-item">
-						<i class="fa-solid fa-xmark"></i>
-					</div>
+						</c:forEach>
+		
+		
+			<div class="header-cart-item">
+				<img alt="img"
+					src="https://preview.colorlib.com/theme/fashi/img/products/product-2.jpg">
+				<div class="header-cart-item-context">
+					<h3>
+						sản phẩm áo 
+					</h3>
+					<p>mô tả sản phẩm áo</p>
+					<p>100đ <span style="color: red;"> x 10</span></p>
 				</div>
+				<div class="cart-close-item">
+					<i class="fa-solid fa-xmark"></i>
+				</div>
+			</div>
 
-			</c:forEach>
-
-
-
-
-
+			<div class="header-cart-item">
+				<img alt="img"
+					src="https://preview.colorlib.com/theme/fashi/img/products/product-2.jpg">
+				<div class="header-cart-item-context">
+					<h3>
+						sản phẩm mũ 
+					</h3>
+					<p>mô tả sản phẩm mũ</p>
+					<p>100đ <span style="color: red;"> x 10</span></p>
+				</div>
+				<div class="cart-close-item">
+					<i class="fa-solid fa-xmark"></i>
+				</div>
+			</div>
 		</div>
 	</div>
 

@@ -102,7 +102,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				<div class="container text-center">
 					<div class="row" id="shop-container">
 
-						<%-- 
+					
 						<c:forEach var="product" items="${dataProduct}">
 
 							<div  class="col">
@@ -131,7 +131,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 							</div>
 
 						</c:forEach>
---%>
+-
 
 						<nav class="paginate" aria-label="Page navigation example">
 							<ul class="pagination">

@@ -24,6 +24,6 @@ public class MaHoaMatKhau {
 	}
 	
 //	public static void main(String[] args) {
-//		System.out.println(toSHA1("123455"));
+//		System.out.println(toSHA1("casa"));
 //	}
 }

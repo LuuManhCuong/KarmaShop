@@ -3,6 +3,7 @@ package database;
 import java.util.ArrayList;
 
 public interface DaoInterface<T> {
+	
 	public ArrayList<T> selectAll();
 
 	public T selectById(T t);

@@ -76,7 +76,7 @@ public class filterController extends HttpServlet {
 		ArrayList<product> dataProducts = new ArrayList<>();
 		productDao productDao = new productDao();
 
-		System.out.println("filter ");
+//		System.out.println("filter ");
 		dataProducts = productDao.handleFilter(category, brandArray, sizeArray);
 
 		response.setContentType("application/json");
