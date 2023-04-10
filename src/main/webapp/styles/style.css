@@ -215,9 +215,11 @@ img {
 
 .header-cart {
 	position: relative;
+	cursor: pointer;
 }
 
 .header-cart-sub {
+	display: none;
 	position: absolute;
 	top: 100%;
 	right: 0;
@@ -225,8 +227,14 @@ img {
 	max-height: 380px;
 	overflow-y: auto;
 	background: #fff9ed;
+	transition: all .3s ease;
 	padding: 20px;
+	cursor: pointer;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.header-btn:hover .header-cart-sub {
+	display: block;
 }
 
 .header-cart-item {
@@ -235,31 +243,33 @@ img {
 	border-bottom: 1px solid #ccc;
 }
 
-.header-cart-item img{
+.header-cart-item img {
 	margin: 0;
 	width: 60px;
 	height: 60px;
 	object-fit: contain;
 }
-.header-cart-item-context{
+
+.header-cart-item-context {
 	flex: 1;
 }
-.header-cart-item-context h3{
+
+.header-cart-item-context h3 {
 	font-size: 16px;
-    font-weight: 600;
-    margin: 0;
-    color: #e7ab3c;
-    margin-left: 10px;
-    
+	font-weight: 600;
+	margin: 0;
+	color: #e7ab3c;
+	margin-left: 10px;
 }
-.header-cart-item-context p{
+
+.header-cart-item-context p {
 	font-size: 14px;
-    font-weight: 500;
-    margin: 0;
-    margin-left: 10px;
+	font-weight: 500;
+	margin: 0;
+	margin-left: 10px;
 }
-.cart-close-item{
+
+.cart-close-item {
 	width: 50px;
 	height: 50px;
-	
 }

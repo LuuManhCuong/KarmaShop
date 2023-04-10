@@ -5,7 +5,9 @@
 
 <%
 String active = request.getRequestURI();
-ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dataCart");
+//ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dataCart");
+user currentUser = (user) session.getAttribute("usernew");
+String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -46,9 +48,10 @@ ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dat
 
 	<div class="header-cart header-btn">
 		<i class="fa-sharp fa-solid fa-cart-shopping"></i>
-		<div class="header-cart-sub">
+		<div class="header-cart-sub" id="header-cart-sub">
 
-
+			<%--
+<%= idCurrentUser %>
 			<c:forEach var="product" items="${dataCart}">
 
 				<div class="header-cart-item">
@@ -68,7 +71,7 @@ ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dat
 			</c:forEach>
 
 
-
+ --%>
 
 
 		</div>
@@ -106,6 +109,44 @@ ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dat
 	}
 	%>
 
-
-
 </div>
+
+<script>
+console.log("curent user: <%=idCurrentUser%> ")
+
+		fetch("/KarmaShop/mainController")
+			.then(response => response.json())
+			.then(data => {
+				//console.log("dataCart: ", data)
+				// Xử lý kết quả trả về ở đây
+				  let container = document.getElementById('header-cart-sub');
+				  var htmls =""
+					  if(data.length > 0 ){
+						  var htmls = data.map(product => {
+						        return `
+						        <div class="header-cart-item">
+								<img alt="img" src=\${product.thumbnail }>
+								<div class="header-cart-item-context">
+									<h3>\${product.productName }</h3>
+									<p>
+										\${product.price} <span style="color: red;"> x
+											\${product.inCart }</span>
+									</p>
+								</div>
+								<div class="cart-close-item">
+									<i class="fa-solid fa-xmark"></i>
+								</div>
+							</div>
+						        `
+						    });
+						container.innerHTML = htmls.join('')
+									  
+						  
+					  } else {
+						  
+							container.innerHTML = "<h1>Không tìm thấy dữ liệu</h1>"
+									  
+					  }
+					  
+			})
+</script>
