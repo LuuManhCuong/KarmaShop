@@ -150,6 +150,8 @@ function render(data){
 		  
 }
 
+
+
 function removeCart(idCart) {
 	console.log("remove: " , idCart)
 	// Sử dụng jQuery Ajax
@@ -171,7 +173,11 @@ function removeCart(idCart) {
 	});	
 }
 
+
+
 		fetch("/KarmaShop/mainController?action=getCart")
 			.then(response => response.json())
 			.then(data => render(data))
+			
+			
 </script>

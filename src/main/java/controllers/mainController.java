@@ -80,6 +80,8 @@ public class mainController extends HttpServlet {
 		boolean isLoggedIn = (session != null && session.getAttribute("usernew") != null);
 		String action = request.getParameter("action");
 		cartDao cartDao = new cartDao();
+		
+//		addToCart
 		if (action.equals("addCart") && isLoggedIn) {
 			String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 			JSONObject jsonObject = new JSONObject(body);
@@ -100,12 +102,14 @@ public class mainController extends HttpServlet {
 
 			cart addCart = new cart(idCart, idUser, idProduct, time);
 			cartDao.insert(addCart);
-			response.setContentType("application/json");
-			PrintWriter out = response.getWriter();
-			Gson gson = new Gson();
-			String jsonProducts = gson.toJson("Đã thêm sản phẩm vào giỏ hàng!");
-			out.print(jsonProducts);
-			out.flush();
+			
+			getDataCart(request, response);
+//			response.setContentType("application/json");
+//			PrintWriter out = response.getWriter();
+//			Gson gson = new Gson();
+//			String jsonProducts = gson.toJson("Đã thêm sản phẩm vào giỏ hàng!");
+//			out.print(jsonProducts);
+//			out.flush();
 
 		} else {
 			// Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập

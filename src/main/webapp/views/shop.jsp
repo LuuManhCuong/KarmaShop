@@ -165,6 +165,42 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 
 	<script type="text/javascript">
 	
+	
+	function render(data){
+		//console.log("dataCart: ", data)
+		// Xử lý kết quả trả về ở đây
+		  let container = document.getElementById('header-cart-sub');
+		  var htmls =""
+			  if(data.length > 0 ){
+				  var htmls = data.map(product => {
+				        return `
+				        <div class="header-cart-item">
+						<img alt="img" src=\${product.thumbnail }>
+						<div class="header-cart-item-context">
+							<h3>\${product.productName }</h3>
+							<p>
+								\${product.price} <span style="color: red;"> x
+									\${product.inCart }</span>
+							</p>
+						</div>
+						<div class="cart-close-item" onclick="removeCart(\${product.idCart}, <%%>)">
+							<i class="fa-solid fa-xmark"></i>
+						</div>
+					</div>
+				        `
+				    });
+				container.innerHTML = htmls.join('')
+							  
+				  
+			  } else {
+				  
+					container.innerHTML = "<h1>Không tìm thấy dữ liệu</h1>"
+							  
+			  }
+			  
+	}
+
+	
 
 	function addCart(idUser, idProduct){
 		console.log("add : ", idUser, idProduct)
@@ -179,8 +215,8 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 			  })
 			})
 			.then(response => response.json())
-			.then(data => console.log(data))
-			.catch(err => console.log("addCart err"))
+			.then(data => render(data))
+			.catch(err => console.log("add Cart err"))
 	}
 	
 	function callApi(url, category, brands, sizes){
