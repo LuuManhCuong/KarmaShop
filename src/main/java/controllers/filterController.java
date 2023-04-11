@@ -71,7 +71,7 @@ public class filterController extends HttpServlet {
 		List<String> sizes = new ArrayList<>();
 		for (int i = 0; i < sizeArray.length(); i++) {
 			sizes.add(sizeArray.getString(i));
-		}
+		} 
 
 		ArrayList<product> dataProducts = new ArrayList<>();
 		productDao productDao = new productDao();

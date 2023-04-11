@@ -110,43 +110,68 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 	%>
 
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <script>
 console.log("curent user: <%=idCurrentUser%> ")
 
-		fetch("/KarmaShop/mainController")
+function render(data){
+	//console.log("dataCart: ", data)
+	// Xử lý kết quả trả về ở đây
+	  let container = document.getElementById('header-cart-sub');
+	  var htmls =""
+		  if(data.length > 0 ){
+			  var htmls = data.map(product => {
+			        return `
+			        <div class="header-cart-item">
+					<img alt="img" src=\${product.thumbnail }>
+					<div class="header-cart-item-context">
+						<h3>\${product.productName }</h3>
+						<p>
+							\${product.price} <span style="color: red;"> x
+								\${product.inCart }</span>
+						</p>
+					</div>
+					<div class="cart-close-item" onclick="removeCart(\${product.idCart}, <%%>)">
+						<i class="fa-solid fa-xmark"></i>
+					</div>
+				</div>
+			        `
+			    });
+			container.innerHTML = htmls.join('')
+						  
+			  
+		  } else {
+			  
+				container.innerHTML = "<h1>Không tìm thấy dữ liệu</h1>"
+						  
+		  }
+		  
+}
+
+function removeCart(idCart) {
+	console.log("remove: " , idCart)
+	// Sử dụng jQuery Ajax
+	$.ajax({
+	  url: "/KarmaShop/mainController", // URL đến Servlet hoặc Controller xử lý yêu cầu xóa sản phẩm trong giỏ hàng
+	  method: "GET", // Phương thức HTTP (GET, POST, PUT, DELETE, etc.)
+	  data: { // Dữ liệu gửi đi, tùy thuộc vào yêu cầu của server
+	    action: "removeCart",
+	    idCart: idCart
+	  }, 
+	  dataType: "json", // Kiểu dữ liệu phản hồi từ server (json, xml, text, etc.)
+	  success: function(data) { // Hàm được gọi khi yêu cầu thành công
+	   // console.log(data); // Xử lý dữ liệu phản hồi từ server
+	    render(data)
+	  },
+	  error: function(xhr, status, error) { // Hàm được gọi khi yêu cầu gặp lỗi
+	    console.log("Lỗi: " + status + " - " + error); // Xử lý lỗi
+	  }
+	});	
+}
+
+		fetch("/KarmaShop/mainController?action=getCart")
 			.then(response => response.json())
-			.then(data => {
-				//console.log("dataCart: ", data)
-				// Xử lý kết quả trả về ở đây
-				  let container = document.getElementById('header-cart-sub');
-				  var htmls =""
-					  if(data.length > 0 ){
-						  var htmls = data.map(product => {
-						        return `
-						        <div class="header-cart-item">
-								<img alt="img" src=\${product.thumbnail }>
-								<div class="header-cart-item-context">
-									<h3>\${product.productName }</h3>
-									<p>
-										\${product.price} <span style="color: red;"> x
-											\${product.inCart }</span>
-									</p>
-								</div>
-								<div class="cart-close-item">
-									<i class="fa-solid fa-xmark"></i>
-								</div>
-							</div>
-						        `
-						    });
-						container.innerHTML = htmls.join('')
-									  
-						  
-					  } else {
-						  
-							container.innerHTML = "<h1>Không tìm thấy dữ liệu</h1>"
-									  
-					  }
-					  
-			})
+			.then(data => render(data))
 </script>

@@ -1,3 +1,4 @@
+<%@page import="models.user"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -30,6 +31,9 @@
 <%
 String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 		+ request.getContextPath();
+
+user currentUser = (user) session.getAttribute("usernew");
+String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 %>
 <script src="<%=url%>/javaScript/script.js"></script>
 
@@ -102,10 +106,10 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				<div class="container text-center">
 					<div class="row" id="shop-container">
 
-					
+
 						<c:forEach var="product" items="${dataProduct}">
 
-							<div  class="col">
+							<div class="col">
 								<div class="card" style="width: 18rem;">
 									<div class="label">
 										<p>${product.category}</p>
@@ -113,8 +117,8 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 										<p>${product.size}</p>
 									</div>
 									<button class="like">
-										<i class="fa-regular fa-heart"></i>
-										<i class="fa-solid fa-heart"></i> 
+										<i class="fa-regular fa-heart"></i> <i
+											class="fa-solid fa-heart"></i>
 									</button>
 									<img src="${product.thumbnail}" class="card-img-top" alt="img">
 									<div class="card-body">
@@ -123,15 +127,17 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 
 
 										<div class="buy-btn">
-											<a href="#" class="btn btn-primary">Buy Now</a> <a href="#"
-												class="btn btn-primary">Add To Cart</a>
+											<button class="buynow-btn btn btn-primary">Buy Now</button> 
+											<button
+												onclick="addCart(<%=idCurrentUser%>, ${product.idProduct})"
+												class="addcart-btn btn btn-primary">Add To Cart</button>
 										</div>
 									</div>
 								</div>
 							</div>
 
 						</c:forEach>
--
+						-
 
 						<nav class="paginate" aria-label="Page navigation example">
 							<ul class="pagination">
@@ -158,8 +164,26 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 
 
 	<script type="text/javascript">
+	
+
+	function addCart(idUser, idProduct){
+		console.log("add : ", idUser, idProduct)
+		fetch("/KarmaShop/mainController?action=addCart", {
+			  method: 'POST',
+			  headers: {
+			    'Content-Type': 'application/json'
+			  },
+			  body: JSON.stringify({
+			    idUser: idUser,
+			    idProduct: idProduct,
+			  })
+			})
+			.then(response => response.json())
+			.then(data => console.log(data))
+			.catch(err => console.log("addCart err"))
+	}
+	
 	function callApi(url, category, brands, sizes){
-		
 		<%--console.log( "fetch: ", "\"" + url + "\"")--%>
 		fetch("/KarmaShop/filterController", {
 			  method: 'POST',
@@ -200,8 +224,10 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 
 
 								<div class="buy-btn">
-									<a href="#" class="btn btn-primary">Buy Now</a> <a href="#"
-										class="btn btn-primary">Add To Cart</a>
+									<a href="#" class="btn btn-primary">Buy Now</a> 
+									<button
+									onclick="addCart(<%=idCurrentUser%>, \${product.idProduct})"
+									class="addcart-btn btn btn-primary">Add To Cart</button>
 								</div>
 							</div>
 						</div>
@@ -224,9 +250,10 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 			.catch(error => {
 			  console.error('Lỗi:', error);
 			});
-
-		
 	}
+	
+	
+	
 	const radioButtons = document.querySelectorAll('input[type="radio"]');
 	radioButtons.forEach(radioButton => {
 	  radioButton.addEventListener('click', () => {

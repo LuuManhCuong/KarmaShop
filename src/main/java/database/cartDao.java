@@ -2,15 +2,59 @@ package database;
 
 import java.sql.Connection;
 
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import models.cart;
+import models.cartModel;
 
 public class cartDao implements DaoInterface<cart> {
+	
+	public ArrayList<cartModel> selectCart(String u) {
+		ArrayList<cartModel> result = new ArrayList<cartModel>();
+
+		try {
+//			1) kết nối csdl
+			Connection connect = Connector.getConnection();
+			String sql = "SELECT \r\n" + "    cart.idCart, \r\n" + "    product.thumbnail, \r\n"
+					+ "    product.inCart, \r\n" + "    product.description,\r\n" + "    user.username, \r\n"
+					+ "    product.name as productName, \r\n" + "    product.price, \r\n" + "    product.idProduct\r\n"
+					+ "    FROM cart\r\n" + "    INNER JOIN user\r\n" + "    ON cart.idUser = user.idUser\r\n"
+					+ "    INNER JOIN product\r\n" + "    ON cart.idProduct = product.idProduct \r\n"
+					+ "    where cart.idUser = ?" + "    order by cart.time desc";
+			PreparedStatement st = connect.prepareStatement(sql);
+			st.setString(1, u);
+
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String idCart = rs.getString("idCart");
+				String idProduct = rs.getString("idProduct");
+				String thumbnail = rs.getString("thumbnail");
+				String description = rs.getString("description");
+				String username = rs.getString("username");
+				String productName = rs.getString("productName");
+				Double price = rs.getDouble("price");
+				int inCart = rs.getInt("inCart");
+
+				cartModel cartItem = new cartModel(idCart, idProduct, thumbnail, description, username, productName, inCart, price);
+				result.add(cartItem);
+
+			}
+
+//			5) đóng kết nối
+			Connector.closeConnection(connect);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 
 	@Override
 	public ArrayList<cart> selectAll() {
@@ -39,7 +83,7 @@ public class cartDao implements DaoInterface<cart> {
 				cart cart = new cart(idCart, idUser, idProduct, time);
 
 				result.add(cart);
-
+				System.out.println("added to cart!");
 			}
 
 //			5) đóng kết nối
@@ -74,7 +118,6 @@ public class cartDao implements DaoInterface<cart> {
 				String idUser = rs.getString("idUser");
 				String idProduct = rs.getString("idProduct");
 				Date time = rs.getDate("time");
-
 				cart = new cart(idCart, idUser, idProduct, time);
 
 				return cart;
@@ -106,7 +149,7 @@ public class cartDao implements DaoInterface<cart> {
 				st.setString(1, t.getIdCart());
 				st.setString(2, t.getIdUser());
 				st.setString(3, t.getIdProduct());
-				st.setDate(8, t.getTime());
+				st.setDate(4, t.getTime());
 //				3) chạy câu lệnh sql
 				count = st.executeUpdate();
 
@@ -150,7 +193,7 @@ public class cartDao implements DaoInterface<cart> {
 				st.setString(1, t.getIdCart());
 
 //				3) chạy câu lệnh sql
-				System.out.println(sql);
+//				System.out.println(sql);
 				count = st.executeUpdate();
 
 //				4) lấy dữ liệu
