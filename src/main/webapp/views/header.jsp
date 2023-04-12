@@ -43,35 +43,12 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 			href="#">Contact</a></li>
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("admin.jsp") ? "active" : ""%>"><a
-			href="#">Admin</a></li>
+			href="/KarmaShop/views/admin.jsp">Admin</a></li>
 	</ul>
 
 	<div class="header-cart header-btn">
 		<i class="fa-sharp fa-solid fa-cart-shopping"></i>
 		<div class="header-cart-sub" id="header-cart-sub">
-
-			<%--
-<%= idCurrentUser %>
-			<c:forEach var="product" items="${dataCart}">
-
-				<div class="header-cart-item">
-					<img alt="img" src="${product.thumbnail }">
-					<div class="header-cart-item-context">
-						<h3>${product.productName }</h3>
-						<p>
-							${product.price} <span style="color: red;"> x
-								${product.inCart }</span>
-						</p>
-					</div>
-					<div class="cart-close-item">
-						<i class="fa-solid fa-xmark"></i>
-					</div>
-				</div>
-
-			</c:forEach>
-
-
- --%>
 
 
 		</div>
