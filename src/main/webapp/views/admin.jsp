@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,84 +28,93 @@
 	crossorigin="anonymous">
 
 </head>
-<body>
+<body style="margin: 200px 40px 0 ">
 	<jsp:include page="header.jsp"></jsp:include>
 
+	
+          	
 
-
-	<div class="shop text-center">
-		<div class="row">
-			<div class="col col-lg-3">
-
-				<h3>Category</h3>
-				<ul class="category">
-
-					<li>Men</li>
-					<li>Women</li>
-					<li>Kids</li>
-				</ul>
-
-				<h3>Brand</h3>
-				<ul class="category">
-
-					<li>Nike</li>
-					<li>Adidas</li>
-					<li>Puma</li>
-				</ul>
-
-				<h3>Color</h3>
-				<ul class="category">
-
-					<li>Red</li>
-					<li>Black</li>
-					<li>White</li>
-				</ul>
-			</div>
-
-
-			<div class="col col-lg-9">
-				<div class="container text-center">
-					<div class="row">
-
-
-						<c:forEach var="product" items="${dataProduct}">
-
-							<div class="col">
-								<div class="card" style="width: 18rem;">
-									<img
-										src="${product.thumbnail}"
-										class="card-img-top"
-										alt="img">
-									<div class="card-body">
-										<h5 class="card-title">${product.name}</h5>
-										<p class="card-text">${product.description}</p>
-										<a href="#" class="btn btn-primary">Go somewhere</a>
-									</div>
-								</div>
-							</div>
-
-						</c:forEach>
-
-
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<table class="table" >
+  <thead>
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">TÊN HÀNG</th>
+      <th scope="col">GIÁ</th>
+      <th scope="col">TÊN NGƯỜI BÁN</th>
+       <th scope="col">SỬA - XÓA</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+	<c:forEach var="product" items="${dataProduct}">
+			
+  
+    <tr>
+      <th scope="row">1</th>
+      <td>
+      <a style="display: flex;   align-content: center; flex-wrap: wrap; ">
+      	 <img src ="http://bold.vn/wp-content/uploads/2019/05/bold-academy-5.jpg">
+          <p style="margin:0 0 0 5px; font-weight: 500 ; height:100% ; line-height: 100%"; >
+          ${product.name}
+           </p>
+      </a>
+       </td>
+      <td>${product.quantity}</td>
+      <td>${product.category}</td>
+       <td style="position: relative; ">
+       <div style="position: relative; display: inline-block;" class="sub" > 
+         icon
+      		<div class="sub-nav" style="border: 1px solid black;  max-width: 70px ; text-align:
+      		 center; position: absolute; left: 100% ; top:30px;width:60px;">
+       		<a style="display:inline-block;width: 100% ;padding: 5px 0 ; color: black;"> sửa </a>
+       		<a style="display: block;padding: 5px 0;  color: black;"> xóa </a>
+       	</div>
+        </div>
+       
+       </td>
+    </tr>   
+    
+   	</c:forEach>
+   
+  </tbody>
+</table>
 
 
 
 	<jsp:include page="footer.jsp"></jsp:include>
 
 
-
+	<style>
+		.sub-nav{
+		display:none;
+		cursor: pointer;
+		z-index: 100;
+		background-color: white;
+		}
+		
+		.sub{
+			cursor: pointer;
+			
+		}
+		
+		.sub:hover{
+			color: red;
+			
+		}
+		
+		.sub:hover .sub-nav {
+			display: block !important;
+		}
+		.sub-nav::before {
+			content: " ";
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: -20px;
+			left: -30px;
+}
+	 </style>
 	
-
-	<script type="text/javascript" src="../javaScript/script.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-		crossorigin="anonymous"></script>
+	
 </body>
 </html>

@@ -27,7 +27,8 @@ public class shopController extends HttpServlet {
 		productDao prdDao = new productDao();
 		ArrayList<product> dataProduct = prdDao.selectAll();
 		request.setAttribute("dataProduct", dataProduct);
-		RequestDispatcher rd = request.getRequestDispatcher("/views/shop.jsp");
+//		System.out.println(dataProduct);
+		RequestDispatcher rd = request.getRequestDispatcher("/views/admin.jsp");
 		rd.forward(request, response);
 	}
 
