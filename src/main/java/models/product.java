@@ -1,28 +1,10 @@
 package models;
 
 public class product {
-	public product() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	private String idProduct, name, description, category, brand, size, thumbnail, color;
 	private int quantity, like;
-
-	public product(String idProduct, String name, String description, String category, String brand, String size,
-			String thumbnail, String color, int quantity, int like) {
-		super();
-		this.idProduct = idProduct;
-		this.name = name;
-		this.description = description;
-		this.category = category;
-		this.brand = brand;
-		this.size = size;
-		this.thumbnail = thumbnail;
-		this.color = color;
-		this.quantity = quantity;
-		this.like = like;
-	}
+	private double price;
 
 	public String getIdProduct() {
 		return idProduct;
@@ -104,11 +86,40 @@ public class product {
 		this.like = like;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public product(String idProduct, String name, String description, String category, String brand, String size,
+			String thumbnail, String color, int quantity, int like, double price) {
+		super();
+		this.idProduct = idProduct;
+		this.name = name;
+		this.description = description;
+		this.category = category;
+		this.brand = brand;
+		this.size = size;
+		this.thumbnail = thumbnail;
+		this.color = color;
+		this.quantity = quantity;
+		this.like = like;
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
 		return "product [idProduct=" + idProduct + ", name=" + name + ", description=" + description + ", category="
 				+ category + ", brand=" + brand + ", size=" + size + ", thumbnail=" + thumbnail + ", color=" + color
-				+ ", quantity=" + quantity + ", like=" + like + "]";
+				+ ", quantity=" + quantity + ", like=" + like + ", price=" + price + "]";
 	}
 
 }

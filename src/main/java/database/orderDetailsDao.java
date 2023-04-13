@@ -49,7 +49,7 @@ public class orderDetailsDao implements DaoInterface<orderDetails> {
 				order order = new orderDao()
 						.selectById(new order(idOrder, null, idOrder, idProduct, quantity, quantity, null, null));
 				product product = new productDao().selectById(new product(idProduct, idProduct, idProduct, idProduct,
-						sql, idOrderDetails, idOrder, idProduct, quantity, quantity));
+						sql, idOrderDetails, idOrder, idProduct, quantity, quantity, totalPrice));
 
 				orderDetails orderDetails = new orderDetails(idOrderDetails, order, product, quantity, initPrice, saleOf, price, vat, totalPrice);
 				result.add(orderDetails);

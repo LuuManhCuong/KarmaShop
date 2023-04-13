@@ -129,4 +129,14 @@
     <servlet-name>mainController</servlet-name>
     <url-pattern>/mainController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>adminController</display-name>
+    <servlet-name>adminController</servlet-name>
+    <servlet-class>controllers.adminController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adminController</servlet-name>
+    <url-pattern>/adminController</url-pattern>
+  </servlet-mapping>
 </web-app>
