@@ -3,6 +3,7 @@
 <%@page import="models.user"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <%
 String active = request.getRequestURI();
 //ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dataCart");
@@ -12,6 +13,12 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<style type="text/css">
+  <%@include file="/styles/header.css" %>
+  <%@include file="/styles/style.css" %>
+  
+</style>
 
 <html>
 
@@ -32,9 +39,20 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("index.jsp") ? "active" : ""%>"><a
 			href="/KarmaShop/views/index.jsp">Home</a></li>
-		<li
-			class="header-menu <%=request.getRequestURI().endsWith("shop.jsp") ? "active" : ""%>"><a
-			href="/KarmaShop/shopController">Shop</a></li>
+		
+		<li>
+			<div class="dropdown">
+			<div class="dropbtn">
+				<p class="header-menu <%=request.getRequestURI().endsWith("shop.jsp") ? "active" : ""%>">Shop</p>
+			</div>
+			  <div class="dropdown-content ">
+			    <a class="header-menu <%=request.getRequestURI().endsWith("shop.jsp") ? "active" : ""%>" href="/KarmaShop/shopController">SHOP CATEGORY</a>
+			    <a href="">PRODUCT DETAILS</a>
+			    <a class="header-menu <%=request.getRequestURI().endsWith("shoppingCart.jsp") ? "active" : ""%>" href="/KarmaShop/ShoppingCart">SHOPPING CART</a>
+			  </div>
+			</div>
+		</li>
+		
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("blog.jsp") ? "active" : ""%>"><a
 			href="#">Blog</a></li>
