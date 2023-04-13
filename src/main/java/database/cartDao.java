@@ -9,13 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import models.cart;
 import models.cartModel;
 
 public class cartDao implements DaoInterface<cart> {
 	
-	public ArrayList<cartModel> selectCart(String u) {
+	public static ArrayList<cartModel> selectCart(String u) {
 		ArrayList<cartModel> result = new ArrayList<cartModel>();
 
 		try {
@@ -131,6 +132,38 @@ public class cartDao implements DaoInterface<cart> {
 
 		return cart;
 	}
+	
+	
+//	kiem tra ton tai san pham
+	public boolean kiemTraTontaiSP(String idCart) {
+		boolean ketQua = false;
+
+		try {
+//			1) kết nối csdl
+			Connection connect = Connector.getConnection();
+
+//			2) tạo stament
+			String sql = "select * from cart where idCart=?";
+			PreparedStatement st = connect.prepareStatement(sql);
+			st.setString(1, idCart);
+
+//			3) chạy câu lệnh sql
+			ResultSet rs = st.executeQuery();
+
+//			4) lấy dữ liệu
+			while (rs.next()) {
+				return true;
+			}
+//			5) đóng kết nối
+			Connector.closeConnection(connect);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return ketQua;
+	}
+
 
 	@Override
 	public int insert(cart t) {
@@ -211,6 +244,35 @@ public class cartDao implements DaoInterface<cart> {
 			return 0;
 		}
 	}
+	
+//	delete cart shopping
+	public void deleteCart(String idCart) {
+
+			try {
+//				1) kết nối csdl
+				Connection connect = Connector.getConnection();
+
+//				2) tạo stament
+				String sql = "DELETE FROM `karmar_shop`.`cart` WHERE (`idcart` = ?);\r\n";
+				PreparedStatement st = connect.prepareStatement(sql);
+				st.setString(1, idCart);
+
+//				3) chạy câu lệnh sql
+//				System.out.println(sql);
+				st.executeUpdate();
+
+//				4) lấy dữ liệu
+				System.out.println("removed:" +idCart);
+
+//				5) đóng kết nối
+				Connector.closeConnection(connect);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		
+	}
 
 	@Override
 	public int deleteAll(ArrayList<cart> arr) {
@@ -220,6 +282,7 @@ public class cartDao implements DaoInterface<cart> {
 		}
 		return count;
 	}
+	
 
 	@Override
 	public int update(cart t) {
