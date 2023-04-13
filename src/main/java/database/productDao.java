@@ -39,9 +39,16 @@ public class productDao implements DaoInterface<product> {
 				String color = rs.getString("color");
 				int quantity = rs.getInt("quantity");
 				int like = rs.getInt("like");
+<<<<<<< HEAD
 				double price = rs.getDouble("price");
 
 				product product = new product(idProduct, name, description, category, brand, size, thumbnail, color, quantity, like, price);
+=======
+				Double price = rs.getDouble("price");
+				
+				product product = new product(idProduct, name, description, category, brand, size, thumbnail, color,
+						quantity, like, price);
+>>>>>>> 9caa27abc431848e6c519592579afd75310f48ac
 				result.add(product);
 
 			}
@@ -164,9 +171,15 @@ public class productDao implements DaoInterface<product> {
 				String color = rs.getString("color");
 				int quantity = rs.getInt("quantity");
 				int like = rs.getInt("like");
+<<<<<<< HEAD
 				double price = rs.getDouble("price");
 
 				product product = new product(idProduct, name, description, category, brand, size, thumbnail, color, quantity, like, price);
+=======
+				Double price = rs.getDouble("price");
+				product product = new product(idProduct, name, description, category, brand, size, thumbnail, color,
+						quantity, like, price);
+>>>>>>> 9caa27abc431848e6c519592579afd75310f48ac
 				result.add(product);
 
 			}
@@ -209,10 +222,16 @@ public class productDao implements DaoInterface<product> {
 				String color = rs.getString("color");
 				int quantity = rs.getInt("quantity");
 				int like = rs.getInt("like");
+<<<<<<< HEAD
 				double price = rs.getDouble("price");
 
 
 				product = new product(idProduct, name, description, category, brand, size, thumbnail, color, quantity, like, price);
+=======
+				Double price = rs.getDouble("price");
+				product = new product(idProduct, name, description, category, brand, size, thumbnail, color, quantity,
+						like, price);
+>>>>>>> 9caa27abc431848e6c519592579afd75310f48ac
 				return product;
 			}
 
@@ -332,6 +351,7 @@ public class productDao implements DaoInterface<product> {
 		return 0;
 	}
 
+<<<<<<< HEAD
 	public static void main(String[] args) {
 		productDao prdDao = new productDao();
 		ArrayList<product> r = prdDao.selectAll();
@@ -345,5 +365,20 @@ public class productDao implements DaoInterface<product> {
 		}
 
 	}
+=======
+//	public static void main(String[] args) {
+//		productDao prdDao = new productDao();
+//		ArrayList<product> r = prdDao.selectAll();
+//		product spProduct = new product("10", "áo thun", "đây là áo thun", null, null, null, null, null, 0, 0);
+////		prdDao.selectById(spProduct);
+////		prdDao.insert(spProduct);
+//		prdDao.delete(spProduct);
+//		System.out.println("xin chào");
+//		for (product product : r) {
+//			System.out.println("product: " + product.toString());
+//		}
+//
+//	}
+>>>>>>> 9caa27abc431848e6c519592579afd75310f48ac
 
 }

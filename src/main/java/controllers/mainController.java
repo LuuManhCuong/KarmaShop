@@ -96,21 +96,11 @@ public class mainController extends HttpServlet {
 			Random rd = new Random();
 			String idCart = System.currentTimeMillis() + rd.nextInt(1000) + "";
 
-//				System.out.println("idCart: " + idCart);
-//				System.out.println("idUser " +idUser );
-//				System.out.println("idProduct " + idProduct);
-//				System.out.println("date: " + time);
 
 			cart addCart = new cart(idCart, idUser, idProduct, time);
 			cartDao.insert(addCart);
 			
 			getDataCart(request, response);
-//			response.setContentType("application/json");
-//			PrintWriter out = response.getWriter();
-//			Gson gson = new Gson();
-//			String jsonProducts = gson.toJson("Đã thêm sản phẩm vào giỏ hàng!");
-//			out.print(jsonProducts);
-//			out.flush();
 
 		} else {
 			// Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập
@@ -145,13 +135,6 @@ public class mainController extends HttpServlet {
 		
 		getDataCart(request, response);
 		
-		  // Tạo đối tượng JSON phản hồi
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("status", "success");
-//		
-//		// Gửi phản hồi về cho Ajax
-//		
-//		response.getWriter().write("success");
 
 	}
 

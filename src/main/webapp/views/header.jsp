@@ -8,7 +8,7 @@
 String active = request.getRequestURI();
 //ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dataCart");
 user currentUser = (user) session.getAttribute("usernew");
-String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
+int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -59,40 +59,24 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("contact.jsp") ? "active" : ""%>"><a
 			href="#">Contact</a></li>
+
+		<%
+		if (isAdmin == 1) {
+		%>
 		<li
-			class="header-menu <%=request.getRequestURI().endsWith("admin.jsp") ? "active" : ""%>"><a
-			href="#">Admin</a></li>
+			class="header-menu <%=request.getRequestURI().endsWith("admin.jsp") ? "active" : ""%>">
+			<a href="/KarmaShop/views/admin.jsp">Admin</a>
+		</li>
+
+		<%
+		}
+		%>
+
 	</ul>
 
 	<div class="header-cart header-btn">
 		<i class="fa-sharp fa-solid fa-cart-shopping"></i>
-		<div class="header-cart-sub" id="header-cart-sub">
-
-			<%--
-<%= idCurrentUser %>
-			<c:forEach var="product" items="${dataCart}">
-
-				<div class="header-cart-item">
-					<img alt="img" src="${product.thumbnail }">
-					<div class="header-cart-item-context">
-						<h3>${product.productName }</h3>
-						<p>
-							${product.price} <span style="color: red;"> x
-								${product.inCart }</span>
-						</p>
-					</div>
-					<div class="cart-close-item">
-						<i class="fa-solid fa-xmark"></i>
-					</div>
-				</div>
-
-			</c:forEach>
-
-
- --%>
-
-
-		</div>
+		<div class="header-cart-sub" id="header-cart-sub"></div>
 	</div>
 
 	<%
@@ -132,7 +116,6 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 
 
 <script>
-console.log("curent user: <%=idCurrentUser%> ")
 
 function render(data){
 	//console.log("dataCart: ", data)

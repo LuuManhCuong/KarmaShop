@@ -16,6 +16,10 @@ ul, li {
 	margin: 0;
 	padding: 0;
 }
+.sub:hover {
+    color: red;
+    padding:10px;
+}
 
 .header {
 	position: fixed;
@@ -277,6 +281,7 @@ img {
 	height: 50px;
 }
 
+<<<<<<< HEAD
 /*
 	shoppingCart
 */
@@ -326,6 +331,27 @@ img {
 .input-qty::-webkit-outer-spin-button,.input-qty::-webkit-inner-spin-button {
     -webkit-appearance:none;
     margin:0;
+=======
+.category{
+	cursor: pointer;
+}
+
+.category .activeCate {
+	border-bottom: 3px solid #e7ab3c;
+}
+
+.blockItem{
+	display: none;
+}
+.include .activeItem{
+	display: block;
+}
+.inputItem{
+	width: 50%;
+}
+.inputBlock{
+	display: flex;
+>>>>>>> 9caa27abc431848e6c519592579afd75310f48ac
 }
 
 
@@ -334,3 +360,8 @@ img {
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9caa27abc431848e6c519592579afd75310f48ac

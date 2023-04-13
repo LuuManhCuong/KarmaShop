@@ -49,7 +49,12 @@ public class orderDetailsDao implements DaoInterface<orderDetails> {
 //				cần tối ưu hàm selectById dựa vào dữ liệu truyền vào
 				order order = new orderDao()
 						.selectById(new order(idOrder, null, idOrder, idProduct, quantity, quantity, null, null));
+<<<<<<< HEAD
 				product product = new productDao().selectById(new product(idProduct, idProduct, idProduct, idProduct, sql, idOrderDetails, idOrder, idProduct, quantity, quantity, quantity));
+=======
+				product product = new productDao().selectById(new product(idProduct, idProduct, idProduct, idProduct,
+						sql, idOrderDetails, idOrder, idProduct, quantity, quantity, totalPrice));
+>>>>>>> 9caa27abc431848e6c519592579afd75310f48ac
 
 				orderDetails orderDetails = new orderDetails(idOrderDetails, order, product, quantity, initPrice, saleOf, price, vat, totalPrice);
 				result.add(orderDetails);
