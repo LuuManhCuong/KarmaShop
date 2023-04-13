@@ -48,7 +48,7 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 		<div class="row">
 			<div class="col col-lg-3 side-bar">
 
-				<form>
+				<form class="form-side-bar">
 					<label>Chọn danh mục:</label>
 					<div>
 						<input type="radio" id="category0" name="category" checked

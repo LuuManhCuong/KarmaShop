@@ -299,7 +299,13 @@ img {
 	display: flex;
 }
 
-
+.form-side-bar{
+	    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+}
 
 
 

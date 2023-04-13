@@ -1,4 +1,5 @@
 
+<%@page import="models.user"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -265,6 +266,19 @@ th, td {
 
 </style>
 </head>
+
+<%
+String active = request.getRequestURI();
+//ArrayList<cartModel> dataCart = (ArrayList<cartModel>) session.getAttribute("dataCart");
+user currentUser = (user) session.getAttribute("usernew");
+int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
+%>
+
+<%
+		if (isAdmin == 1) {
+		%>
+		
+
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 
@@ -840,4 +854,12 @@ th, td {
 			integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
 			crossorigin="anonymous"></script>
 </body>
+<%
+	} else {
+	%>
+	<a class="" href="/KarmaShop/views/login.jsp">Chưa đăng nhập</a>
+		<% 
+		}
+		%>
+
 </html>
