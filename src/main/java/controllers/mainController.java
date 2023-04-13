@@ -24,7 +24,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.apache.tomcat.util.json.JSONParser;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONString;
@@ -39,6 +39,7 @@ import database.productDao;
  * Servlet implementation class mainController
  */
 //@WebServlet("/cart")
+@SuppressWarnings("unused")
 public class mainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -125,7 +126,7 @@ public class mainController extends HttpServlet {
 //		System.out.println("current user: " + currentUser.getIdUser());
 
 		cartDao cartDao = new cartDao();
-		ArrayList<cartModel> dataCart = cartDao.selectCart(currentUser.getIdUser());
+		ArrayList<cartModel> dataCart = database.cartDao.selectCart(currentUser.getIdUser());
 //		
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();

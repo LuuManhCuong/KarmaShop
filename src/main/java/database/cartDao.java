@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import models.cart;
@@ -96,6 +97,7 @@ public class cartDao implements DaoInterface<cart> {
 
 		return result;
 	}
+	
 
 	@Override
 	public cart selectById(cart t) {
@@ -273,6 +275,45 @@ public class cartDao implements DaoInterface<cart> {
 			
 		
 	}
+	
+//	tong tien
+	
+	public double totalCart(ArrayList<cartModel> cartList) {
+
+		double sum = 0;
+
+		try {
+//			1) kết nối csdl
+			Connection connect = Connector.getConnection();
+
+			if(cartModel.size()>0) {
+				for(cartModel item:cartList) {
+//					2) tạo stament
+				String sql = "select * from cart where idCart=?";
+				PreparedStatement st = connect.prepareStatement(sql);
+
+//				3) chạy câu lệnh sql
+				System.out.println(sql);
+				ResultSet rs = st.executeQuery();
+
+//				4) lấy dữ liệu
+				while (rs.next()) {
+					sum+=rs.getDouble(item.getIdCart())*item.getPrice();
+				}
+
+				}
+			}
+//			5) đóng kết nối
+			Connector.closeConnection(connect);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return sum;
+	}
+	
+	
 
 	@Override
 	public int deleteAll(ArrayList<cart> arr) {

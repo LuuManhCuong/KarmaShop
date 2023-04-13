@@ -42,14 +42,14 @@ public class orderDetailsDao implements DaoInterface<orderDetails> {
 				Double price = rs.getDouble("price");
 				Double vat = rs.getDouble("vat");
 				Double totalPrice = rs.getDouble("totalPrice");
+				
 
 				
 //				tạo ra 2 đối tượng order và product mới nhưng thực ra chỉ cần lấy id để select
 //				cần tối ưu hàm selectById dựa vào dữ liệu truyền vào
 				order order = new orderDao()
 						.selectById(new order(idOrder, null, idOrder, idProduct, quantity, quantity, null, null));
-				product product = new productDao().selectById(new product(idProduct, idProduct, idProduct, idProduct,
-						sql, idOrderDetails, idOrder, idProduct, quantity, quantity));
+				product product = new productDao().selectById(new product(idProduct, idProduct, idProduct, idProduct, sql, idOrderDetails, idOrder, idProduct, quantity, quantity, quantity));
 
 				orderDetails orderDetails = new orderDetails(idOrderDetails, order, product, quantity, initPrice, saleOf, price, vat, totalPrice);
 				result.add(orderDetails);

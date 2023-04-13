@@ -1,3 +1,5 @@
+<%@page import="models.cartModel"%>
+<%@page import="database.cartDao"%>
 <%@page import="models.user"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -40,7 +42,7 @@ baoLoi = (baoLoi.equals(null))?"":baoLoi;
 user currentUser = (user) session.getAttribute("usernew");
 String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 
-String idCart = request.getParameter("idCart")+"";
+
 %>
 <script src="<%=url%>/javaScript/script.js"></script>
 </head>
@@ -69,9 +71,7 @@ String idCart = request.getParameter("idCart")+"";
 					<th scope="col">Price</th>
 					<th scope="col">Quantity</th>
 					<th scope="col">Total</th>
-					<th>
-						
-					</th>
+					<th>Cancel</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -138,7 +138,7 @@ String idCart = request.getParameter("idCart")+"";
 			<div class="col-6 col-md-4">
 				<div style="display: flex; justify-content: space-between;">
 					<p style="font-size: 14px; font-weight: 500">Subtotal</p>
-					<p>$100</p>
+					<p>$ ${(total>0)?total:0}</p>
 				</div>
 			</div>
 		</div>

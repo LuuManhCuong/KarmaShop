@@ -141,7 +141,7 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 							</div>
 
 						</c:forEach>
-						-
+						
 
 						<nav class="paginate" aria-label="Page navigation example">
 							<ul class="pagination">

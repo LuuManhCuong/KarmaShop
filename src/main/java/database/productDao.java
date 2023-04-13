@@ -39,9 +39,9 @@ public class productDao implements DaoInterface<product> {
 				String color = rs.getString("color");
 				int quantity = rs.getInt("quantity");
 				int like = rs.getInt("like");
+				double price = rs.getDouble("price");
 
-				product product = new product(idProduct, name, description, category, brand, size, thumbnail, color,
-						quantity, like);
+				product product = new product(idProduct, name, description, category, brand, size, thumbnail, color, quantity, like, price);
 				result.add(product);
 
 			}
@@ -55,8 +55,7 @@ public class productDao implements DaoInterface<product> {
 
 		return result;
 	}
-
-	
+		
 
 	public ArrayList<product> handleFilter(String cate, JSONArray brandArray, JSONArray sizeArray) {
 
@@ -165,9 +164,9 @@ public class productDao implements DaoInterface<product> {
 				String color = rs.getString("color");
 				int quantity = rs.getInt("quantity");
 				int like = rs.getInt("like");
+				double price = rs.getDouble("price");
 
-				product product = new product(idProduct, name, description, category, brand, size, thumbnail, color,
-						quantity, like);
+				product product = new product(idProduct, name, description, category, brand, size, thumbnail, color, quantity, like, price);
 				result.add(product);
 
 			}
@@ -210,9 +209,10 @@ public class productDao implements DaoInterface<product> {
 				String color = rs.getString("color");
 				int quantity = rs.getInt("quantity");
 				int like = rs.getInt("like");
+				double price = rs.getDouble("price");
 
-				product = new product(idProduct, name, description, category, brand, size, thumbnail, color, quantity,
-						like);
+
+				product = new product(idProduct, name, description, category, brand, size, thumbnail, color, quantity, like, price);
 				return product;
 			}
 
@@ -335,7 +335,7 @@ public class productDao implements DaoInterface<product> {
 	public static void main(String[] args) {
 		productDao prdDao = new productDao();
 		ArrayList<product> r = prdDao.selectAll();
-		product spProduct = new product("10", "áo thun", "đây là áo thun", null, null, null, null, null, 0, 0);
+		product spProduct = new product(null, null, null, null, null, null, null, null, 0, 0, 0);
 //		prdDao.selectById(spProduct);
 //		prdDao.insert(spProduct);
 		prdDao.delete(spProduct);

@@ -129,4 +129,44 @@
     <servlet-name>mainController</servlet-name>
     <url-pattern>/mainController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShoppingCart</display-name>
+    <servlet-name>ShoppingCart</servlet-name>
+    <servlet-class>controllers.ShoppingCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShoppingCart</servlet-name>
+    <url-pattern>/ShoppingCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Delete</display-name>
+    <servlet-name>Delete</servlet-name>
+    <servlet-class>controllers.Delete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Delete</servlet-name>
+    <url-pattern>/Delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteAllCart</display-name>
+    <servlet-name>DeleteAllCart</servlet-name>
+    <servlet-class>controllers.DeleteAllCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteAllCart</servlet-name>
+    <url-pattern>/DeleteAllCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CartHome</display-name>
+    <servlet-name>CartHome</servlet-name>
+    <servlet-class>controllers.CartHome</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartHome</servlet-name>
+    <url-pattern>/CartHome</url-pattern>
+  </servlet-mapping>
 </web-app>
