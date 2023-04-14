@@ -32,6 +32,9 @@
 String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 		+ request.getContextPath();
 
+String baoLoi = request.getAttribute("baoLoi")+"";
+baoLoi = (baoLoi.equals("null"))?"":baoLoi;
+
 user currentUser = (user) session.getAttribute("usernew");
 String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 %>
@@ -45,6 +48,7 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 
 
 	<div class="shop text-center">
+		<h6 style="margin-top: -60px"><%=baoLoi%></h6>
 		<div class="row">
 			<div class="col col-lg-3 side-bar">
 
@@ -137,7 +141,7 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 							</div>
 
 						</c:forEach>
-						-
+						
 
 						<nav class="paginate" aria-label="Page navigation example">
 							<ul class="pagination">

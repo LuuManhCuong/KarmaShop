@@ -96,4 +96,9 @@ public class cartModel {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public static int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
