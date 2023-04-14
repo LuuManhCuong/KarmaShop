@@ -13,7 +13,7 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <style type="text/css">
   <%@include file="/styles/style.css" %>
   
@@ -23,46 +23,52 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 
 /* Dropdown Button */
 .dropbtn {
-  color: black;
-  font-size: 14px;
-  padding-top: 15px;
-  padding-left: 10px;
-  padding-right: 10px
+	color: black;
+	font-size: 14px;
+	padding-top: 15px;
+	padding-left: 10px;
+	padding-right: 10px
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  position: relative;
-  display: inline-block;
+	position: relative;
+	display: inline-block;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: #e7ab3c;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 14px
+	color: #e7ab3c;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	font-size: 14px
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+	display: block;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {color: #e7ab3c}
+.dropdown:hover .dropbtn {
+	color: #e7ab3c
+}
 </style>
 
 <html>
@@ -84,23 +90,24 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("index.jsp") ? "active" : ""%>"><a
 			href="/KarmaShop/CartHome">Home</a></li>
-		
+
 		<li>
 			<div class="dropdown">
-			<div class="dropbtn">
-				<p class="header-menu <%=request.getRequestURI().endsWith("shop.jsp") ? "active" : ""%>">Shop</p>
-			</div>
-			  <div class="dropdown-content ">
-			    <a class="header-menu <%=request.getRequestURI().endsWith("shop.jsp") ? "active" : ""%>" href="/KarmaShop/shopController">SHOP CATEGORY</a>
-			    <a href="">PRODUCT DETAILS</a>
-			    <a class="header-menu <%=request.getRequestURI().endsWith("shoppingCart.jsp") ? "active" : ""%>" href="/KarmaShop/ShoppingCart">SHOPPING CART</a>
-			  </div>
+				<a class="header-menu dropbtn " style="color: black;">Shop <i class="fa-sharp fa-solid fa-chevron-down"></i></a>
+				<div class="dropdown-content ">
+					<a
+						class="header-menu <%=request.getRequestURI().endsWith("shop.jsp") ? "active" : ""%>"
+						href="/KarmaShop/shopController">SHOP CATEGORY</a> <a href="">PRODUCT
+						DETAILS</a> <a
+						class="header-menu <%=request.getRequestURI().endsWith("shoppingCart.jsp") ? "active" : ""%>"
+						href="/KarmaShop/ShoppingCart">SHOPPING CART</a>
+				</div>
 			</div>
 		</li>
-		
+
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("blog.jsp") ? "active" : ""%>"><a
-			href="#">Blog</a></li>
+			href="/KarmaShop/views/blog.jsp">Blog</a></li>
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("contact.jsp") ? "active" : ""%>"><a
 			href="/KarmaShop/views/contact.jsp">Contact</a></li>

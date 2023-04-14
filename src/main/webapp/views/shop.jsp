@@ -53,7 +53,7 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 			<div class="col col-lg-3 side-bar">
 
 				<form class="form-side-bar">
-					<label>Chọn danh mục:</label>
+					<label class="title-text">Categories</label>
 					<div>
 						<input type="radio" id="category0" name="category" checked
 							value="All"> <label for="category0">All</label>
@@ -71,7 +71,7 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 						<label for="category3">Kids</label>
 					</div>
 
-					<label>Chọn brand:</label>
+					<label class="title-text">Brands </label>
 					<div>
 						<input type="checkbox" id="brand1" name="brand" value="Nike">
 						<label for="brand1">Nike</label>
@@ -86,7 +86,7 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 					</div>
 
 
-					<label>Chọn size:</label>
+					<label class="title-text">Sizes</label>
 					<div>
 						<input type="checkbox" id="size1" name="size" value="M"> <label
 							for="size1">M</label>
@@ -127,6 +127,7 @@ String idCurrentUser = currentUser != null ? currentUser.getIdUser() : "";
 									<img src="${product.thumbnail}" class="card-img-top" alt="img">
 									<div class="card-body">
 										<h5 class="card-title">${product.name}</h5>
+										<p class="card-text">${product.price} đ</p>
 										<p class="card-text">${product.description}</p>
 
 

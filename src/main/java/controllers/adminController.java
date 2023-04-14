@@ -88,25 +88,26 @@ public class adminController extends HttpServlet {
 			String gender = data.get("gender").getAsString();
 			String avatarUrl = data.get("avatarUrl").getAsString();
 			String password = MaHoaMatKhau.toSHA1(getPassword);
-			System.out.println(idUser);
-			System.out.println(username);
-			System.out.println(password);
-			
+//			System.out.println(idUser);
+//			System.out.println(username);
+//			System.out.println(password);
+
 			LocalDate now = LocalDate.now();
 			Date createAtDate = Date.valueOf(now);
-			
+
 			userDao userDao = new userDao();
-			userDao.update(new user(idUser, username,password , email, phone, address, gender, avatarUrl, isAdmin, createAtDate));
-			
+			userDao.update(new user(idUser, username, password, email, phone, address, gender, avatarUrl, isAdmin,
+					createAtDate));
+
 			response.setContentType("application/json");
 			PrintWriter out = response.getWriter();
 			Gson gson = new Gson();
 			String jsonProducts = gson.toJson("succes");
 			out.print(jsonProducts);
 			out.flush();
-			
-			
-		} else {
+
+		}
+		if (action.equals("addProduct")) {
 
 			Random rd = new Random();
 			String idProduct = System.currentTimeMillis() + rd.nextInt(1000) + "";

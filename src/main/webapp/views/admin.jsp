@@ -525,69 +525,75 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 
 		<script>
 	
-	// Xử lý sự kiện add product
-	document.getElementById("uploadForm").addEventListener("submit", function (event) {
-	  event.preventDefault(); // Ngăn chặn hành vi submit mặc định của form
 
-	  // Lấy dữ liệu từ các input fields
-	  var name = document.getElementById("name").value;
-	  
-	  var category = document.getElementById("category").value;
-	  var brand = document.getElementById("brand").value;
-	  var size = document.getElementById("size").value;
-	  var color = document.getElementById("color").value;
-	  var quantity = document.getElementById("quantity").value;
-	  var price = document.getElementById("price").value;
-	  var description = document.getElementById("description").value;
-
-	  // Upload ảnh lên Cloudinary
-	  var fileInput = document.getElementById("thumbnail");
-	  var file = fileInput.files[0];
-
-	  // Tạo FormData để gửi dữ liệu và file lên server
-	  var imgData = new FormData();
-	  imgData.append("file", file);
-	  imgData.append("upload_preset", "mpght0dj");
-	  
-	  // Gửi request POST để upload ảnh lên Cloudinary
-	  fetch("https://api.cloudinary.com/v1_1/djcamu6kz/upload", {
-	    method: "POST",
-	    body: imgData
-	  })
-	    .then(function (response) {
-	      return response.json();
-	    })
-	    .then(function (data) {
-	      // Lấy URL của ảnh từ response của Cloudinary
-	      var imageURL = data.secure_url;
-	      console.log("url: ", imageURL)
-
+		// Xử lý sự kiện add product
+		document.getElementById("uploadForm").addEventListener("submit", function (event) {
+		  event.preventDefault(); // Ngăn chặn hành vi submit mặc định của form
+		  // Lấy dữ liệu từ các input fields
+		  var name = document.getElementById("name").value;
+		  var category = document.getElementById("category").value;
+		  var brand = document.getElementById("brand").value;
+		  var size = document.getElementById("size").value;
+		  var color = document.getElementById("color").value;
+		  var quantity = document.getElementById("quantity").value;
+		  var price = document.getElementById("price").value;
+		  var description = document.getElementById("description").value;
+		  // Upload ảnh lên Cloudinary
+		  var fileInput = document.getElementById("thumbnail");
+		  var file = fileInput.files[0];
+		  // Tạo FormData để gửi dữ liệu và file lên server
+		  var imgData = new FormData();
+		  imgData.append("file", file);
+		  imgData.append("upload_preset", "mpght0dj");
 		  
-		  fetch("/KarmaShop/adminController&action=addProduct", {
-			    method: "POST",
-			    headers: {
-				    'Content-Type': 'application/json'
-				  },
-			    body: JSON.stringify({
-					  name,
-					  category,
-					  brand,
-					  size,
-					  color,
-					  quantity,
-					  price,
-					  description,
-					  thumbnail: imageURL
+		  // Gửi request POST để upload ảnh lên Cloudinary
+		  fetch("https://api.cloudinary.com/v1_1/djcamu6kz/upload", {
+		    method: "POST",
+		    body: imgData
+		  })
+		    .then(function (response) {
+		      return response.json();
+		    })
+		    .then(function (data) {
+		      // Lấy URL của ảnh từ response của Cloudinary
+		      var imageURL = data.secure_url;
+		      console.log("url: ", imageURL)
+		      console.log("new : " ,JSON.stringify({
+				  name,
+				  category,
+				  brand,
+				  size,
+				  color,
+				  quantity,
+				  price,
+				  description,
+				  thumbnail: imageURL
+			  }))
+			  fetch("/KarmaShop/adminController?action=addProduct", {
+				    method: "POST",
+				    headers: {
+					    'Content-Type': 'application/json'
+					  },
+				    body: JSON.stringify({
+						  name,
+						  category,
+						  brand,
+						  size,
+						  color,
+						  quantity,
+						  price,
+						  description,
+						  thumbnail: imageURL
+					  })
 				  })
-			  })
-			  .then(response => response.json())
-			  .then(data => console.log(data))
-			  .catch(err => console.log("lỗi "))
-	    })
-	    .catch(function (error) {
-	      console.error("Lỗi khi upload ảnh lên Cloudinary:", error);
-	    });
-	});
+				  .then(response => response.json())
+				  .then(data => console.log(data))
+				  .catch(err => console.log("lỗi "))
+		    })
+		    .catch(function (error) {
+		      console.error("Lỗi khi upload ảnh lên Cloudinary:", error);
+		    });
+		});
 	
 	
 	
@@ -607,8 +613,6 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 	  var gender = document.getElementById("gender").value;
 	  var admin = document.getElementById("isAdmin").checked;
 	  
-		console.log("name: ", username)
-		console.log("password: "+ username)
 	  let isAdmin = admin===true? 1 : 0;
 	  
 	   // Upload ảnh lên Cloudinary

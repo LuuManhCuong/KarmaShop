@@ -17,13 +17,16 @@ ul, li {
 	padding: 0;
 }
 
-a{
+a {
 	text-decoration: none !important;
 }
 
-a:hover{
-	color: #ffaf02 !important ;
-	
+p {
+	margin: 0 !important;
+}
+
+a:hover {
+	color: #ffaf02 !important;
 }
 
 .sub:hover {
@@ -33,7 +36,7 @@ a:hover{
 
 .header {
 	position: fixed;
-	z-index: 1;
+	z-index: 1000;
 	top: 10px;
 	transform: translateX(-50%);
 	left: 50%;
@@ -382,3 +385,19 @@ img {
 	padding: 20px;
 	color: black;
 }
+
+.navbar {
+	display: none !important;
+}
+
+.title-text {
+	font-size: 20px;
+	font-weight: 600;
+	color: #ffaf02;
+}
+
+lable {
+	cursor: pointer !important;
+}
+
+
