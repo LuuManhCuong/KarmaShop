@@ -119,6 +119,8 @@
     <servlet-name>filterController</servlet-name>
     <url-pattern>/filterController</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <description></description>
     <display-name>mainController</display-name>
@@ -129,9 +131,10 @@
     <servlet-name>mainController</servlet-name>
     <url-pattern>/mainController</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <description></description>
-<<<<<<< HEAD
     <display-name>ShoppingCart</display-name>
     <servlet-name>ShoppingCart</servlet-name>
     <servlet-class>controllers.ShoppingCart</servlet-class>
@@ -140,6 +143,15 @@
     <servlet-name>ShoppingCart</servlet-name>
     <url-pattern>/ShoppingCart</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>adminController</display-name>
+    <servlet-name>adminController</servlet-name>
+    <servlet-class>controllers.adminController</servlet-class>
+  </servlet>
+  
+  
   <servlet>
     <description></description>
     <display-name>Delete</display-name>
@@ -150,6 +162,7 @@
     <servlet-name>Delete</servlet-name>
     <url-pattern>/Delete</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>DeleteAllCart</display-name>
@@ -160,7 +173,8 @@
     <servlet-name>DeleteAllCart</servlet-name>
     <url-pattern>/DeleteAllCart</url-pattern>
   </servlet-mapping>
-  <servlet>
+  
+   <servlet>
     <description></description>
     <display-name>CartHome</display-name>
     <servlet-name>CartHome</servlet-name>
@@ -169,14 +183,10 @@
   <servlet-mapping>
     <servlet-name>CartHome</servlet-name>
     <url-pattern>/CartHome</url-pattern>
-=======
-    <display-name>adminController</display-name>
-    <servlet-name>adminController</servlet-name>
-    <servlet-class>controllers.adminController</servlet-class>
-  </servlet>
+  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>adminController</servlet-name>
     <url-pattern>/adminController</url-pattern>
->>>>>>> 9caa27abc431848e6c519592579afd75310f48ac
   </servlet-mapping>
 </web-app>

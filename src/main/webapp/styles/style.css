@@ -17,6 +17,15 @@ ul, li {
 	padding: 0;
 }
 
+a{
+	text-decoration: none !important;
+}
+
+a:hover{
+	color: #ffaf02 !important ;
+	
+}
+
 .sub:hover {
 	color: red;
 	padding: 10px;
@@ -359,10 +368,17 @@ img {
 	display: flex;
 }
 
+.header-btn i {
+	padding: 20px;
+	font-size: 18px;
+	color: #ffaf02;
+}
+
 .form-side-bar {
 	display: flex;
 	justify-content: left;
 	align-items: flex-start;
 	flex-direction: column;
 	padding: 20px;
+	color: black;
 }

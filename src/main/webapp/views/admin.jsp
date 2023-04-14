@@ -478,6 +478,10 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 					                  <label for="username">Username</label>
 					                  <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" >
 					                </div>
+					              <div class="form-group">
+					                  <label for="password">Password</label>
+					                  <input type="text" class="form-control" id="password" name="password" placeholder="Enter password" >
+					                </div>
 					                <div class="form-group">
 					                  <label for="email">Email</label>
 					                  <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" >
@@ -527,6 +531,7 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 
 	  // Lấy dữ liệu từ các input fields
 	  var name = document.getElementById("name").value;
+	  
 	  var category = document.getElementById("category").value;
 	  var brand = document.getElementById("brand").value;
 	  var size = document.getElementById("size").value;
@@ -594,13 +599,16 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 	  console.log("edit user")
 	// Lấy giá trị từ các trường input trong form
 	  var idUser = document.getElementById("idUser").value;
+	  var password = document.getElementById("password").value;
 	  var username = document.getElementById("username").value;
 	  var email = document.getElementById("email").value;
 	  var phone = document.getElementById("phone").value;
 	  var address = document.getElementById("address").value;
 	  var gender = document.getElementById("gender").value;
 	  var admin = document.getElementById("isAdmin").checked;
-		
+	  
+		console.log("name: ", username)
+		console.log("password: "+ username)
 	  let isAdmin = admin===true? 1 : 0;
 	  
 	   // Upload ảnh lên Cloudinary
@@ -633,6 +641,7 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 			    body: JSON.stringify({
 			    	idUser,
 			    	username,
+			    	password,
 			    	email,
 			    	phone,
 			    	address,
@@ -675,11 +684,11 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 			  let container = document.getElementById('tb-dataCustomer');
 			  var htmls =""
 				  if(data.length > 0 ){
-					  var htmls = data.map(user => {
+					  var htmls = data.map((user, i)=> {
 					        return `
 
 					        <tr>
-					          <th scope="row">1</th>
+					          <th scope="row">\${i+1}</th>
 					          <td>
 					          <a style="display: flex;align-content: center;flex-wrap: wrap;justify-content: center;">
 					          	 <img src =\${user.avatarUrl} style="
@@ -759,12 +768,12 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 			  let container = document.getElementById('tb-wareHouse');
 			  var htmls =""
 				  if(data.length > 0 ){
-					  var htmls = data.map(product => {
+					  var htmls = data.map((product,i) => {
 					        return `
 					        
 
 					        <tr>
-					          <th scope="row">1</th>
+					          <th scope="row">\${i+1}</th>
 					          <td>
 					          <a style="display: flex;align-content: center;flex-wrap: wrap;justify-content: center;">
 					          	 <img src =\${product.thumbnail}>

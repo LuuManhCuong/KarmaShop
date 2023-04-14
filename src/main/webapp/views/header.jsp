@@ -83,7 +83,7 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 	<ul class="header-menu-list">
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("index.jsp") ? "active" : ""%>"><a
-			href="/KarmaShop/views/index.jsp">Home</a></li>
+			href="/KarmaShop/CartHome">Home</a></li>
 		
 		<li>
 			<div class="dropdown">
@@ -103,7 +103,7 @@ int isAdmin = currentUser != null ? currentUser.getIsAdmin() : 0;
 			href="#">Blog</a></li>
 		<li
 			class="header-menu <%=request.getRequestURI().endsWith("contact.jsp") ? "active" : ""%>"><a
-			href="#">Contact</a></li>
+			href="/KarmaShop/views/contact.jsp">Contact</a></li>
 
 		<%
 		if (isAdmin == 1) {

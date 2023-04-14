@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import models.product;
 import models.user;
+import util.MaHoaMatKhau;
 
 import java.awt.Desktop.Action;
 import java.io.BufferedReader;
@@ -79,21 +80,23 @@ public class adminController extends HttpServlet {
 			JsonObject data = JsonParser.parseString(json).getAsJsonObject();
 			String idUser = data.get("idUser").getAsString();
 			String username = data.get("username").getAsString();
+			String getPassword = data.get("password").getAsString();
 			String email = data.get("email").getAsString();
 			String phone = data.get("phone").getAsString();
 			String address = data.get("address").getAsString();
 			int isAdmin = data.get("isAdmin").getAsInt();
 			String gender = data.get("gender").getAsString();
 			String avatarUrl = data.get("avatarUrl").getAsString();
+			String password = MaHoaMatKhau.toSHA1(getPassword);
 			System.out.println(idUser);
 			System.out.println(username);
-			System.out.println(isAdmin);
+			System.out.println(password);
 			
 			LocalDate now = LocalDate.now();
 			Date createAtDate = Date.valueOf(now);
 			
 			userDao userDao = new userDao();
-			userDao.update(new user(idUser, username, username, email, phone, address, gender, avatarUrl, isAdmin, createAtDate));
+			userDao.update(new user(idUser, username,password , email, phone, address, gender, avatarUrl, isAdmin, createAtDate));
 			
 			response.setContentType("application/json");
 			PrintWriter out = response.getWriter();

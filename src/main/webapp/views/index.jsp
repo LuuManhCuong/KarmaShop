@@ -56,7 +56,6 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 		</div>
 	</div>
 
-<<<<<<< HEAD
 	<%-- --%>
 
 	<div class="container text-center"
@@ -195,8 +194,6 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 
 
 
-=======
->>>>>>> 9caa27abc431848e6c519592579afd75310f48ac
 	<jsp:include page="footer.jsp"></jsp:include>
 
 

@@ -16,6 +16,7 @@ import database.productDao;
 /**
  * Servlet implementation class CartHome
  */
+//@WebServlet(name="CartHome", urlPatterns = "/CartHome")
 public class CartHome extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
